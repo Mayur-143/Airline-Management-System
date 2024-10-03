@@ -1,51 +1,44 @@
 package com.example.AirlineManagementSystem.model;
 
-
-import javax.persistence.*;
 import java.util.Date;
 
-@Entity
-@Table(name = "users")
 public class User {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "user_id")
     private int userId;
-
-    @Column(name = "first_name", length = 50)
     private String firstName;
-
-    @Column(name = "middle_name", length = 50)
     private String middleName;
-
-    @Column(name = "last_name", length = 50)
     private String lastName;
-
-    @Column(name = "password", nullable = false, length = 255)
     private String password;
-
-    @Column(name = "date_of_birth")
-    @Temporal(TemporalType.DATE)
     private Date dateOfBirth;
-
-    @Column(name = "street", length = 100)
     private String street;
-
-    @Column(name = "city", length = 50)
     private String city;
-
-    @Column(name = "state", length = 50)
     private String state;
-
-    @Column(name = "country", length = 50)
     private String country;
-
-    @Column(name = "pin_code", length = 10)
     private String pinCode;
-
-    @Column(name = "role", nullable = false, length = 50)
     private String role;
 
+    // Default constructor
+    public User() {
+    }
+
+    // Parameterized constructor
+    public User(int userId, String firstName, String middleName, String lastName, String password,
+                Date dateOfBirth, String street, String city, String state, String country,
+                String pinCode, String role) {
+        this.userId = userId;
+        this.firstName = firstName;
+        this.middleName = middleName;
+        this.lastName = lastName;
+        this.password = password;
+        this.dateOfBirth = dateOfBirth;
+        this.street = street;
+        this.city = city;
+        this.state = state;
+        this.country = country;
+        this.pinCode = pinCode;
+        this.role = role;
+    }
+
+    // Getters and Setters
     public int getUserId() {
         return userId;
     }
@@ -140,5 +133,23 @@ public class User {
 
     public void setRole(String role) {
         this.role = role;
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "userId=" + userId +
+                ", firstName='" + firstName + '\'' +
+                ", middleName='" + middleName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", password='" + password + '\'' +
+                ", dateOfBirth=" + dateOfBirth +
+                ", street='" + street + '\'' +
+                ", city='" + city + '\'' +
+                ", state='" + state + '\'' +
+                ", country='" + country + '\'' +
+                ", pinCode='" + pinCode + '\'' +
+                ", role='" + role + '\'' +
+                '}';
     }
 }
