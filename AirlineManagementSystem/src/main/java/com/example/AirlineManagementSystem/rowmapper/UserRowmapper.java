@@ -23,7 +23,7 @@ public class UserRowmapper implements RowMapper<User>{
         user.setCountry(rs.getString("country"));
         user.setPinCode(rs.getString("pin_code"));
         user.setRole(rs.getString("role"));
-
+        user.setPrimaryEmail(rs.getString("primary_email"));
         return user;
     }
 }

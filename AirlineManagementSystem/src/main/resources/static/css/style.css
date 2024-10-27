@@ -1,0 +1,413 @@
+/* Global Styling */
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f0f4f8; /* Light background for elegance */
+    color: #333;
+    /* display: flex; */
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+/* Navbar Styling */
+.navbar {
+    display: flex;
+    justify-content: flex-end;
+    background-color: #2c3e50; /* Darker shade for the navbar */
+    padding: 1rem 2rem;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.navbar a {
+    color: #ecf0f1; /* Light color for better contrast */
+    margin-left: 20px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s;
+}
+
+.navbar a:hover {
+    color: #e67e22; /* Bright orange on hover */
+}
+
+/* Hero Section */
+.hero {
+    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('/images/airplane.jpg') no-repeat center center;
+    background-size: cover;
+    height: 90vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: #ecf0f1; /* Light color for hero text */
+}
+
+.hero h1 {
+    font-size: 4rem;
+    margin: 0;
+    letter-spacing: 2px;
+    animation: fadeInDown 1s ease-in-out;
+}
+
+.hero p {
+    font-size: 1.5rem;
+    margin-top: 10px;
+    animation: fadeInUp 1s ease-in-out;
+}
+
+.book-btn {
+    margin-top: 30px;
+    padding: 15px 30px;
+    background-color: #e67e22; /* Bright orange for the button */
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-size: 1.2rem;
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: background-color 0.3s, transform 0.2s;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    border-radius: 5px; /* Rounded corners for button */
+    animation: fadeInUp 1.2s ease-in-out;
+}
+
+.book-btn:hover {
+    background-color: #d35400; /* Darker orange on hover */
+    transform: scale(1.05); /* Slight scale effect on hover */
+}
+
+/* Content Section */
+.content {
+    padding: 50px 20px;
+    text-align: center;
+    background-color: #ecf0f1; /* Soft grey for content background */
+    border-radius: 10px; /* Rounded corners */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    margin: 20px; /* Margin to separate from edges */
+}
+
+.content h2 {
+    font-size: 2.5rem;
+    color: #2c3e50; /* Darker color for section heading */
+    margin-bottom: 20px;
+    animation: fadeIn 1s ease-in-out;
+}
+
+.content p {
+    font-size: 1.2rem;
+    color: #7f8c8d; /* Soft grey for text */
+    max-width: 600px;
+    margin: 0 auto;
+    animation: fadeIn 1.2s ease-in-out;
+}
+
+/* FAQ Section */
+.faq {
+    padding: 50px 20px;
+    text-align: center;
+    background-color: #ffffff; /* White background for clarity */
+    border-radius: 10px; /* Rounded corners */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    margin: 20px; /* Margin to separate from edges */
+}
+
+.faq h2 {
+    font-size: 2.5rem;
+    color: #2c3e50;
+    margin-bottom: 20px;
+    animation: fadeIn 1s ease-in-out;
+}
+
+.faq-item {
+    margin: 20px 0;
+    text-align: left;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.faq-item h3 {
+    cursor: pointer;
+    background-color: #2c3e50; /* Darker background for FAQ titles */
+    color: white;
+    padding: 10px;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+.faq-item h3:hover {
+    background-color: #e67e22; /* Bright orange on hover */
+}
+
+.faq-item p {
+    display: none; /* Hidden by default */
+    padding: 10px;
+    border: 1px solid #2c3e50; /* Border color to match title */
+    border-radius: 5px;
+    margin-top: 5px;
+    background-color: #ecf0f1; /* Soft grey for content */
+}
+
+/* Footer Styling */
+footer {
+    background-color: #2c3e50; /* Dark footer */
+    color: white;
+    padding: 20px 0;
+    text-align: center;
+    position: relative;
+    bottom: 0;
+    width: 100%;
+}
+
+footer h3 {
+    margin: 0;
+    font-size: 1.5rem;
+    letter-spacing: 1px;
+}
+
+footer a {
+    color: #e67e22; /* Bright color for footer links */
+    text-decoration: none;
+    margin: 0 10px;
+    transition: color 0.3s;
+}
+
+footer a:hover {
+    color: #d35400; /* Darker orange on hover */
+}
+
+/* Animations */
+@keyframes fadeInDown {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .hero h1 {
+        font-size: 2.5rem;
+    }
+
+    .hero p {
+        font-size: 1.2rem;
+    }
+
+    .book-btn {
+        font-size: 1rem;
+    }
+
+    .content h2 {
+        font-size: 2rem;
+    }
+
+    .content p {
+        font-size: 1rem;
+    }
+
+    .faq h2 {
+        font-size: 2rem;
+    }
+}
+
+.container {
+    background-color: white;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    width: 400px;
+    
+}
+
+.login-body{
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f0f4f8; /* Light background for elegance */
+    color: #333;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+h2 {
+    text-align: center;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+
+label {
+    display: block;
+    margin-bottom: 5px;
+    color: #555;
+}
+
+input[type="text"],
+input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 14px;
+    transition: border-color 0.3s;
+}
+
+input[type="text"]:focus,
+input[type="password"]:focus {
+    border-color: #007bff;
+    outline: none;
+}
+
+.submit-button {
+    width: 100%;
+    padding: 10px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s;
+}
+
+.submit-button:hover {
+    background-color: #0056b3;
+}
+
+.error-message {
+    color: red;
+    text-align: center;
+    margin-top: 10px;
+}
+
+.register-link {
+    text-align: center;
+    margin-top: 15px;
+}
+
+.register-link a {
+    color: #007bff;
+    text-decoration: none;
+}
+
+.register-link a:hover {
+    text-decoration: underline;
+}
+
+h1 {  
+    text-align: center;  
+    color: #333;  
+    margin-top: 30px;  
+}  
+
+form {  
+    background-color: #fff;  
+    width: 800px;  
+    margin: 40px auto;  
+    padding: 20px;  
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);  
+    border-radius: 8px;  
+    display: flex;   
+    flex-wrap: wrap;  
+    gap: 10px;  
+}  
+
+label {  
+    display: block;  
+    margin-bottom: 5px;  
+    color: #333;  
+    font-weight: bold;  
+}  
+
+.form-group {  
+    width: calc(33.33% - 5px);  
+    margin-bottom: 10px; 
+    
+}  
+
+/* Special styling for the name fields */
+.name-group {  
+    display: flex;  
+    justify-content: space-between;  
+    width: 100%;  
+}
+
+.name-group .form-group {  
+    width: calc(33.33% - 5px);  
+    margin-bottom: 10px;  
+}
+
+input[type="text"], input[type="email"], input[type="password"], input[type="date"], select {  
+    width: 100%;  
+    padding: 10px;  
+    border: 1px solid #ccc;  
+    border-radius: 4px;  
+    box-sizing: border-box;  
+    font-size: 14px;  
+}  
+
+input[type="text"]:focus, input[type="email"]:focus, input[type="password"]:focus, input[type="date"]:focus, select:focus {  
+    border-color: #66afe9;  
+    outline: none;  
+    box-shadow: 0 0 8px rgba(102, 175, 233, 0.6);  
+}  
+
+button[type="submit"] {  
+    width: 100%;  
+    padding: 12px;  
+    background-color: #4CAF50;  
+    color: white;  
+    border: none;  
+    border-radius: 4px;  
+    font-size: 16px;  
+    cursor: pointer;  
+}  
+
+button[type="submit"]:hover {  
+    background-color: #45a049;  
+}  
+
+/* Full-width field for elements that should span both columns */  
+.full-width {  
+    width: 100%;  
+}  
+
+/* Responsive for mobile */  
+@media (max-width: 768px) {  
+    form {  
+        width: 90%;  
+    }  
+
+    .form-group {  
+        width: 100%;  
+    }  
+} 

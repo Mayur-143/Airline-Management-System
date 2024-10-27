@@ -8,13 +8,6 @@ import org.springframework.context.annotation.ComponentScan;
 //import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 @SpringBootApplication
-@ComponentScan(basePackages = {
-		"com.example.AirlineManagementSystem.model",
-		"com.example.AirlineManagementSystem.dao",
-		"com.example.AirlineManagementSystem.service",
-		"com.example.AirlineManagementSystem.controller"
-})
-@EntityScan(basePackages = "com.example.AirlineManagementSystem.model")
 public class AirlineManagementSystemApplication {
 
 	public static void main(String[] args) {

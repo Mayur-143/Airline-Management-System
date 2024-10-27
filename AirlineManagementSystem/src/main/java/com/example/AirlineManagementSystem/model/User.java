@@ -1,13 +1,15 @@
 package com.example.AirlineManagementSystem.model;
 
+import org.springframework.format.annotation.DateTimeFormat;
 import java.util.Date;
 
 public class User {
-    private int userId;
+    private Integer  userId;
     private String firstName;
     private String middleName;
     private String lastName;
     private String password;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")  // Specify the expected date format
     private Date dateOfBirth;
     private String street;
     private String city;
@@ -15,6 +17,7 @@ public class User {
     private String country;
     private String pinCode;
     private String role;
+    private String primaryEmail;
 
     // Default constructor
     public User() {
@@ -23,7 +26,7 @@ public class User {
     // Parameterized constructor
     public User(int userId, String firstName, String middleName, String lastName, String password,
                 Date dateOfBirth, String street, String city, String state, String country,
-                String pinCode, String role) {
+                String pinCode, String role, String primaryemail) {
         this.userId = userId;
         this.firstName = firstName;
         this.middleName = middleName;
@@ -36,6 +39,7 @@ public class User {
         this.country = country;
         this.pinCode = pinCode;
         this.role = role;
+        this.primaryEmail=primaryEmail;
     }
 
     // Getters and Setters
@@ -135,6 +139,14 @@ public class User {
         this.role = role;
     }
 
+    public String getPrimaryEmail() {
+        return primaryEmail;
+    }
+
+    public void setPrimaryEmail(String primaryemail) {
+        this.primaryEmail = primaryemail;
+    }
+
     @Override
     public String toString() {
         return "User{" +
@@ -150,6 +162,7 @@ public class User {
                 ", country='" + country + '\'' +
                 ", pinCode='" + pinCode + '\'' +
                 ", role='" + role + '\'' +
+                ", primaryEmail='" + primaryEmail + '\'' +
                 '}';
     }
 }
