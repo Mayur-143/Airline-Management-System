@@ -6,9 +6,14 @@
     <title>Login</title>
     <link rel="stylesheet" th:href="@{/css/style.css}">
     
+    
 </head>
 <body>
-    <div th:fragment="content">
+
+    <!-- Updated Include Header -->
+    <div th:replace="~{fragments/header :: header}"></div>
+    
+    <div >
         <div class="login-body">
         <div class="container">
             <h2>Login</h2>
@@ -22,6 +27,7 @@
                         <label for="password">Password:</label>
                         <input type="password" name="password" id="password" required>
                     </div>
+                    <br>
                     <div class="form-group">
                         <input type="submit" value="Login" class="submit-button">
                     </div>

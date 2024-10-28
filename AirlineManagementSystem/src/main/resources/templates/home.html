@@ -9,16 +9,10 @@
     
 </head>
 
-<body>
-    <div th:fragment="content">
-    <!-- Navigation Bar -->
-        <!-- <div class="navbar">
-            <a href="/home">Home</a>
-            <a href="/login">Login</a>
-            <a href="/register">Register</a>
-            <a href="/flight-enquiry">Flight Enquiry</a>
-        </div> -->
-
+<body >
+    <!-- Updated Include Header -->
+    <div th:replace="~{fragments/header :: header}"></div>
+    
         <!-- Hero Section -->
         <div class="hero">
             <h1>Welcome to Mahakal Airline</h1>
@@ -53,16 +47,9 @@
             </div>
         </div>
 
-        <!-- Footer Section -->
-        <!-- <footer>
-            <h3>Connect with Us</h3>
-            <p>
-                <a href="/about">About Us</a>
-                <a href="/contact">Contact</a>
-                <a href="/terms">Terms of Service</a>
-            </p>
-            <p>&copy; 2024 Mahakal Airline. All rights reserved.</p>
-        </footer> -->
+        
+        <!-- Include Footer -->
+    <div th:replace="fragments/footer :: footer"></div>
 
         <script>
             function toggleFAQ(element) {
@@ -74,7 +61,7 @@
                 }
             }
         </script>
-    </div>
+    
 </body>
 
 </html>

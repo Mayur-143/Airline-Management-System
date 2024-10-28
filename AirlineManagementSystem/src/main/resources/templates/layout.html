@@ -1,21 +1,21 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title th:text="${title}">Mahakal Airline</title>
     <link rel="stylesheet" th:href="@{/css/style.css}">
 </head>
 <body>
+    <!-- Include Header -->
+    <div th:replace="fragments/header :: header"></div>
 
-<!-- Include Header -->
-<div th:replace="fragments/header :: header"></div>
+    <!-- Main Content -->
+    <div class="content">
+        <div th:insert="${content}"></div>
+    </div>
 
-<!-- Main Content -->
-<div class="content">
-    <div th:insert="${content}"></div>
-</div>
-
-<!-- Include Footer -->
-<div th:replace="fragments/footer :: footer"></div>
-
+    <!-- Include Footer -->
+    <div th:replace="fragments/footer :: footer"></div>
 </body>
 </html>
