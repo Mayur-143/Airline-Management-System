@@ -5,10 +5,10 @@
         <a href="/flight-enquiry">Flight Enquiry</a>
 
         <!-- Show Login and Register for unauthenticated users -->
-        <a href="/login" th:if="${#authentication == null or !#authentication.authenticated}">Login</a>
-        <a href="/register" th:if="${#authentication == null or !#authentication.authenticated}">Register</a>
+        <a href="/login" th:if="${#authorization.expression('isAnonymous()')}">Login</a>
+        <a href="/register" th:if="${#authorization.expression('isAnonymous()')}">Register</a>
 
         <!-- Show Logout for authenticated users -->
-        <a href="/logout" th:if="${#authentication != null and #authentication.authenticated}">Logout</a>
+        <a href="/logout" th:if="${#authorization.expression('isAuthenticated()')}">Logout</a>
     </div>
 </div>

@@ -1,0 +1,62 @@
+/* Modal */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    background-color: rgba(0, 0, 0, 0.6); /* Dark background with more opacity for emphasis */
+    backdrop-filter: blur(5px); /* Slight blur effect on the background */
+}
+
+/* Modal Content */
+.modal-content {
+    background-color: #ffffff; /* White background for content */
+    border-radius: 8px; /* Rounded corners */
+    margin: 15% auto; /* 15% from the top and centered */
+    padding: 20px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2); /* Soft shadow */
+    width: 90%; /* Width responsive to screen size */
+    max-width: 400px; /* Max width to keep it from being too wide */
+    
+}
+
+/* Title */
+.modal-title {
+    font-size: 24px;
+    margin-bottom: 10px;
+    color: #e74c3c; /* Red color for error emphasis */
+}
+
+/* Message */
+.modal-message {
+    font-size: 16px;
+    color: #555; /* Dark gray for message text */
+}
+
+/* Close Button */
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: #e74c3c; /* Change color on hover for emphasis */
+    text-decoration: none;
+    cursor: pointer;
+}
+
+/* Animation for modal */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.modal-content {
+    animation: fadeIn 0.3s; /* Fade-in effect */
+}

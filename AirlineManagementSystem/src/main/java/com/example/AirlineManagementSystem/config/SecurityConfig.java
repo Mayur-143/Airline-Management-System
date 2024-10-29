@@ -1,6 +1,5 @@
 package com.example.AirlineManagementSystem.config;
 
-//import com.example.AirlineManagementSystem.service.CustomUserDetailsService;
 import com.example.AirlineManagementSystem.service.UserService;
 
 import java.util.Collection;
@@ -38,13 +37,13 @@ public class SecurityConfig {
                 .csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/css/**","/js/**","/images/**").permitAll()
-                        .requestMatchers("/login", "/register","/home").permitAll()  // Permit access to login and register
+                        .requestMatchers("/login", "/register").permitAll()  // Permit access to login and register
                         .anyRequest().authenticated()
                 )
                 .formLogin(form -> form
                         .loginPage("/login")
                         .usernameParameter("primaryEmail")
-		  	.passwordParameter("password")
+		  	            .passwordParameter("password")
                         .loginProcessingUrl("/login")
                         // .defaultSuccessUrl("/home", true)  // Redirect to home after successful login
                         .successHandler(customAuthenticationSuccessHandler())

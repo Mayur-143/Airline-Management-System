@@ -3,7 +3,7 @@
 <head>  
     <title>Register</title>  
     <link rel="stylesheet" th:href="@{/css/style.css}">
-
+    <link rel="stylesheet" th:href="@{/css/modal.css}">
     
     <script>  
         function validateForm() {  
@@ -18,7 +18,34 @@
         function validateEmail(email) {  
             var re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/; // Simple email regex  
             return re.test(email);  
-        }  
+        } 
+
+        // Function to show the modal
+        function showErrorModal() {
+            var modal = document.getElementById("errorModal");
+            modal.style.display = "block";
+            var closeButton = document.getElementsByClassName("close")[0];
+
+            // Close the modal when the user clicks the 'x' button
+            closeButton.onclick = function() {
+                modal.style.display = "none";
+            };
+
+            // Close the modal if the user clicks anywhere outside of it
+            window.onclick = function(event) {
+                if (event.target == modal) {
+                    modal.style.display = "none";
+                }
+            };
+        }
+
+        // Check if email exists (this will be set by the backend if email is already taken)
+        window.onload = function() {
+            var emailExists = /*[[${emailExists}]]*/ false;
+            if (emailExists) {
+                showErrorModal();
+            }
+        };
     </script>  
 </head>  
 <body> 
@@ -84,18 +111,18 @@
             <input type="text" th:field="*{pinCode}" required/>  
         </div>  
 
-        <!-- <div class="form-group">  
-            <label for="role">Role:</label>  
-            <select id="role" th:field="*{role}" required>  
-                <option value="" disabled selected>Select a role</option>    
-                <option value="user">User</option> 
-                <option value="admin">Admin</option> 
-            </select>  
-        </div>   -->
-
         <div class="form-group full-width">  
             <button type="submit">Register</button>  
-        </div>  
+        </div> 
     </form>  
+
+    <!-- Error message container (hidden initially) -->
+    <div id="errorModal" class="modal" style="display: none;"> <!-- Set display to none initially -->
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h3 class="modal-title">Registration Error</h3>
+            <p class="modal-message" th:if="${emailExists}">This email address is already registered. Please use a different email.</p>
+        </div>
+    </div>
 </body>  
 </html>

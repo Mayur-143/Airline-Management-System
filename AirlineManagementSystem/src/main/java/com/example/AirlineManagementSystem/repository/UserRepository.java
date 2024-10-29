@@ -96,15 +96,6 @@ public class UserRepository {
         return count != null && count > 0; // Return true if email exists
     }
 
-    // public Optional<User> findByPrimaryEmail(String email) {
-    //     String sql = "SELECT * FROM USERS WHERE primary_email = ?";
-    //     try {
-    //         User user = jdbcTemplate.queryForObject(sql, new UserRowmapper(), new Object[]{email});
-    //         return Optional.of(user);
-    //     } catch (EmptyResultDataAccessException e) {
-    //         return Optional.empty();
-    //     }
-    // }
     public Optional<User> findByPrimaryEmail(String email) {
         System.out.println("Searching for email: " + email);
         String sql = "SELECT * FROM USERS WHERE primary_email = ?";
