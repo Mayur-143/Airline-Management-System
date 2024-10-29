@@ -32,7 +32,7 @@ public class UserController {
 
     @GetMapping("admin/home")
     public String showAdminHomePage() {
-        return "admin-home"; // This will render the home.html template
+        return "adminHome"; // This will render the home.html template
     }
 
     // Show the login page
