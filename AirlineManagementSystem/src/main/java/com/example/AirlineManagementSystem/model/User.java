@@ -16,7 +16,7 @@ public class User {
     private String state;
     private String country;
     private String pinCode;
-    private String role;
+    private String role = "user";  //default role is USER 
     private String primaryEmail;
 
     // Default constructor
