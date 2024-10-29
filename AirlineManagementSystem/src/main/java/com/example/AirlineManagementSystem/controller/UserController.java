@@ -25,9 +25,14 @@ public class UserController {
     private PasswordEncoder passwordEncoder;  // Autowire the password encoder
 
     // To show the home page
-    @GetMapping("/home")
+    @GetMapping("user/home")
     public String showHomePage() {
         return "home"; // This will render the home.html template
+    }
+
+    @GetMapping("admin/home")
+    public String showAdminHomePage() {
+        return "admin-home"; // This will render the home.html template
     }
 
     // Show the login page
@@ -59,34 +64,34 @@ public class UserController {
         user.setPrimaryEmail(primaryEmail);
         userService.addUser(user); // This will save the new user in the database
         System.out.println(user);
-        return "redirect:/home"; // Redirect to home after successful registration
+        return "redirect:/user/home"; // Redirect to home after successful registration
     }
 
-    @PostMapping("/login")
-public String login(@RequestParam String primaryEmail, @RequestParam String rawPassword) {
-    System.out.println("Attempting to log in with email: " + primaryEmail);
-    System.out.println("Raw Password Entered: " + rawPassword);
+//     @PostMapping("/login")
+//     public String login(@RequestParam String primaryEmail, @RequestParam String rawPassword) {
+//     System.out.println("Attempting to log in with email: " + primaryEmail);
+//     System.out.println("Raw Password Entered: " + rawPassword);
     
-    Optional<User> optionaluser = userService.findUserByPrimaryEmail(primaryEmail);
+//     Optional<User> optionaluser = userService.findUserByPrimaryEmail(primaryEmail);
     
-    if(optionaluser.isPresent()){
-        User user = optionaluser.get(); // Retrieve the User from Optional
+//     if(optionaluser.isPresent()){
+//         User user = optionaluser.get(); // Retrieve the User from Optional
         
-        // Check if the provided password matches the stored password hash
-        boolean matches = passwordEncoder.matches(rawPassword, user.getPassword());
-        System.out.println("Password Match: " + matches);
+//         // Check if the provided password matches the stored password hash
+//         boolean matches = passwordEncoder.matches(rawPassword, user.getPassword());
+//         System.out.println("Password Match: " + matches);
         
-        if (matches) {
-            // Successful login logic
-            return "redirect:/home"; // Example redirect
-        } else {
-            // Invalid password logic
-            return "redirect:/login?error=true";
-        }
-    }
+//         if (matches) {
+//             // Successful login logic
+//             return "redirect:/home"; // Example redirect
+//         } else {
+//             // Invalid password logic
+//             return "redirect:/login?error=true";
+//         }
+//     }
     
-    return "redirect:/login?error=true"; // User not found
-}
+//     return "redirect:/login?error=true"; // User not found
+// }
 
     
     
