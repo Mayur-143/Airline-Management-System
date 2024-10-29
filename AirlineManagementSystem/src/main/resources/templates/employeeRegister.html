@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Register Employee</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <script>
+        function validateForm() {
+            var email = document.getElementById("email").value;
+            if (!validateEmail(email)) {
+                alert("Please enter a valid email address.");
+                return false; // Prevent form submission
+            }
+            return true; // Allow form submission
+        }
+
+        function validateEmail(email) {
+            var re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/; // Simple email regex
+            return re.test(email);
+        }
+    </script>
+</head>
+<body>
+    <div th:replace="~{fragments/adminheader :: adminheader}"></div>
+
+    <h1>Register Employee</h1>
+    <form id="registerForm" th:action="@{/employees/register}" th:object="${employee}" method="post" onsubmit="return validateForm()">
+        <div class="name-group">  
+            <div class="form-group">  
+                <label>First Name:</label>  
+                <input type="text" th:field="*{firstName}" required/>  
+            </div>  
+
+            <div class="form-group">  
+                <label>Middle Name:</label>  
+                <input type="text" th:field="*{middleName}"/>  
+            </div>  
+
+            <div class="form-group">  
+                <label>Last Name:</label>  
+                <input type="text" th:field="*{lastName}" required/>  
+            </div>  
+        </div>
+        <div class="form-group">
+            <label>Street:</label>
+            <input type="text" th:field="*{street}" required/>
+        </div>
+        <div class="form-group">
+            <label>City:</label>
+            <input type="text" th:field="*{city}" required/>
+        </div>
+        <div class="form-group">
+            <label>State:</label>
+            <input type="text" th:field="*{state}" required/>
+        </div>
+        <div class="form-group">
+            <label>Country:</label>
+            <input type="text" th:field="*{country}" required/>
+        </div>
+        <div class="form-group">
+            <label>Pin Code:</label>
+            <input type="text" th:field="*{pinCode}" required/>
+        </div>
+        <div class="form-group">
+            <label>Designation:</label>
+            <input type="text" th:field="*{designation}" required/>
+        </div>
+        <div class="form-group">
+            <label>Mobile Number:</label>
+            <input type="number" th:field="*{mobileNumber}" required/>
+        </div>
+        <div class="form-group">
+            <label>Airport:</label>
+            <select th:field="*{airportId}" required>
+                <option value="" disabled selected>Select Airport</option>
+                <!-- Populate airport options from the database -->
+                <option th:each="airport : ${airports}" th:value="${airport.airportId}" th:text="${airport.name}"></option>
+            </select>
+        </div>
+        <div class="form-group full-width">
+            <button type="submit">Register</button>
+        </div>
+    </form>
+</body>
+</html>
