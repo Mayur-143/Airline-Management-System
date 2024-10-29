@@ -1,6 +1,7 @@
 <!-- Header Section -->
 <div th:fragment="header">
     <div class="navbar">
+<<<<<<< HEAD
         <div class="left-links">
             <a href="/about_us">About Us</a>
             <a href="/contact_us">Contact Us</a>
@@ -17,5 +18,16 @@
             <!-- Show Logout for authenticated users -->
             <a href="/logout" th:if="${#authentication != null and #authentication.authenticated}">Logout</a>
         </div>
+=======
+        <a href="/home">Home</a>
+        <a href="/flight-enquiry">Flight Enquiry</a>
+
+        <!-- Show Login and Register for unauthenticated users -->
+        <a href="/login" th:if="${#authorization.expression('isAnonymous()')}">Login</a>
+        <a href="/register" th:if="${#authorization.expression('isAnonymous()')}">Register</a>
+
+        <!-- Show Logout for authenticated users -->
+        <a href="/logout" th:if="${#authorization.expression('isAuthenticated()')}">Logout</a>
+>>>>>>> 84676f0058aafa6c404d08376da30a330d493357
     </div>
 </div>

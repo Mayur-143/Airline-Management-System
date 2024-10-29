@@ -1,0 +1,38 @@
+package com.example.AirlineManagementSystem.service;
+
+import com.example.AirlineManagementSystem.model.Flight;
+import com.example.AirlineManagementSystem.repository.FlightRepository;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
+import java.util.Optional;
+
+@Service
+public class FlightService {
+
+    private final FlightRepository flightRepository;
+
+    public FlightService(FlightRepository flightRepository) {
+        this.flightRepository = flightRepository;
+    }
+
+    public int addFlight(Flight flight) {
+        return flightRepository.save(flight);
+    }
+
+    public int updateFlight(Flight flight) {
+        return flightRepository.update(flight);
+    }
+
+    public Optional<Flight> getFlightById(int flightId) {
+        return flightRepository.findById(flightId);
+    }
+
+    public List<Flight> getAllFlights() {
+        return flightRepository.findAll();
+    }
+
+    public int deleteFlight(int flightId) {
+        return flightRepository.deleteById(flightId);
+    }
+}

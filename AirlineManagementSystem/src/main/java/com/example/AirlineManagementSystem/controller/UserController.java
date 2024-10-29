@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.*;
 
 
 @Controller
- //@RequestMapping("/users")
 public class UserController {
 
     @Autowired
@@ -56,7 +55,7 @@ public class UserController {
 
         // Check if email already exists
         if (userService.primaryEmailExists(primaryEmail)) {
-            model.addAttribute("error", "Primary email already exists. Please use a different email.");
+            model.addAttribute("emailExists", true);
             return "register"; // Stay on the registration page
         }
 
