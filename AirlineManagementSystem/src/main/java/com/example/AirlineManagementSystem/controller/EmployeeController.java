@@ -1,37 +1,57 @@
-// import org.springframework.beans.factory.annotation.Autowired;
-// import org.springframework.stereotype.Controller;
-// import org.springframework.ui.Model;
-// import org.springframework.web.bind.annotation.GetMapping;
-// import org.springframework.web.bind.annotation.PostMapping;
+package com.example.AirlineManagementSystem.controller;
 
-// import com.example.AirlineManagementSystem.model.Employee;
-// import com.example.AirlineManagementSystem.service.EmployeeService;
+import com.example.AirlineManagementSystem.model.Airport;
+import com.example.AirlineManagementSystem.model.Employee;
+import com.example.AirlineManagementSystem.service.AirportService;
+import com.example.AirlineManagementSystem.service.EmployeeService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
-// import org.springframework.web.bind.annotation.ModelAttribute;
+import java.util.List;
 
-// import java.util.List;
+@Controller
+@RequestMapping("/employees")
+public class EmployeeController {
 
-// @Controller
-// public class EmployeeController {
+    private final EmployeeService employeeService;
+    private final AirportService airportService;
 
-//     @Autowired
-//     private EmployeeService employeeService;
+    @Autowired
+    public EmployeeController(EmployeeService employeeService, AirportService airportService) {
+        this.employeeService = employeeService;
+        this.airportService = airportService;
+    }
 
-//     @Autowired
-//     private AirportService airportService; // Assuming you have this service for airport fetching
+    // Show form to register a new employee
+    @GetMapping("/add")
+    public String showAddEmployeeForm(Model model) {
+        Employee employee = new Employee();
+        employee.setAirportId(0);
+        model.addAttribute("employee", new Employee());
+        List<Airport> airports = airportService.getAllAirports();
+        System.out.println("Airports List: " + airports);  // Debugging line
+        System.out.println("Employee airportId: " + employee.getAirportId());
+        model.addAttribute("airports", airports); // Pass airports list for dropdown
+        return "employeeRegister";
+    }
 
-//     @GetMapping("/employees/register")
-//     public String showRegistrationForm(Model model) {
-//         model.addAttribute("employee", new Employee());
-//         List<Airport> airports = airportService.findAll(); // Fetching airports for dropdown
-//         model.addAttribute("airports", airports);
-//         return "admin/register_employee"; // Thymeleaf template for registration
-//     }
+    // Process the employee registration form
+    @PostMapping("/add")
+    public String addEmployee(@ModelAttribute("employee") Employee employee) {
+        employeeService.addEmployee(employee);
+        return "redirect:/employees/view";  // Redirect to view all employees after saving
+    }
 
-//     @PostMapping("/employees/register") // Handle the form submission
-//     public String registerEmployee(@ModelAttribute Employee employee, Model model) {
-//         employeeService.saveEmployee(employee); // Save employee to the database
-//         model.addAttribute("successMessage", "Employee registered successfully!");
-//         return "redirect:/employees"; // Redirect to a suitable page after registration
-//     }
-// }
+    // Display all employees
+    @GetMapping("/view")
+    public String viewAllEmployees(Model model) {
+        List<Employee> employees = employeeService.findAll();
+        model.addAttribute("employees", employees);
+        return "view-employees";
+    }
+}

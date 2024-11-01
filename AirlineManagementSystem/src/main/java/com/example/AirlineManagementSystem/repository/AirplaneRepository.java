@@ -3,8 +3,11 @@ package com.example.AirlineManagementSystem.repository;
 import com.example.AirlineManagementSystem.model.Airplane;
 import com.example.AirlineManagementSystem.rowmapper.AirplaneRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.support.GeneratedKeyHolder;
+import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Repository;
 
+import java.sql.PreparedStatement;
 import java.util.List;
 import java.util.Optional;
 
@@ -19,13 +22,24 @@ public class AirplaneRepository {
 
     // Save a new Airplane
     public int save(Airplane airplane) {
-        String sql = "INSERT INTO AIRPLANE (registration_no, description, model, total_seats, total_economy_seats, " +
-                     "total_business_seats, total_first_class_seats) VALUES (?, ?, ?, ?, ?, ?, ?)";
-        return jdbcTemplate.update(sql, airplane.getRegistrationNo(), airplane.getDescription(),
-                                   airplane.getModel(), airplane.getTotalSeats(),
-                                   airplane.getTotalEconomySeats(), airplane.getTotalBusinessSeats(),
-                                   airplane.getTotalFirstClassSeats());
-    }
+    String sql = "INSERT INTO AIRPLANE (registration_no, description, model, total_seats, total_economy_seats, " +
+                 "total_business_seats, total_first_class_seats) VALUES (?, ?, ?, ?, ?, ?, ?)";
+    KeyHolder keyHolder = new GeneratedKeyHolder();
+
+    jdbcTemplate.update(connection -> {
+        PreparedStatement ps = connection.prepareStatement(sql, new String[] { "airplane_id" });
+        ps.setString(1, airplane.getRegistrationNo());
+        ps.setString(2, airplane.getDescription());
+        ps.setString(3, airplane.getModel());
+        ps.setInt(4, airplane.getTotalSeats());
+        ps.setInt(5, airplane.getTotalEconomySeats());
+        ps.setInt(6, airplane.getTotalBusinessSeats());
+        ps.setInt(7, airplane.getTotalFirstClassSeats());
+        return ps;
+    }, keyHolder);
+
+    return keyHolder.getKey() != null ? keyHolder.getKey().intValue() : -1;
+}
 
     // Update an existing Airplane
     public int update(Airplane airplane) {

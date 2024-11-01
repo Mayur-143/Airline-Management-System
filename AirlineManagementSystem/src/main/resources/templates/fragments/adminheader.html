@@ -3,18 +3,19 @@
 <div th:fragment="adminheader">
     <div class="adminnavbar">
         <div class="left-links">
-            <a href="/about_us">About Us</a>
-            <a href="/contact_us">Contact Us</a>
-            <a href="/view_flights">View Flights</a>
+            <!-- <a href="/about_us">About Us</a>
+            <a href="/contact_us">Contact Us</a> -->
+            <a href="/admin/home">Home</a>
         </div>
         <div class="right-links">
-            <a href="/employee">Employees</a>
-            <a href="/add_employee">Add Employee</a>
-            <a href="/add_airplane">Add Airplane</a>
-            <a href="/add_airport">Add Airport</a>
-            <a href="/view_airport">View Airplanes</a>
-            <a href="/view_airport">View Airports</a>
-            <a href="/add_flight">Add Flight</a>
+            <a th:href="@{/employees/add}">Add Employee</a>
+            <a th:href="@{/airplanes/add}">Add Airplane</a>
+            <a th:href="@{/airports/add}">Add Airport</a>
+            <a href="/employees/view">View Employees</a>
+            <a th:href="@{/airplanes/view}">View Airplanes</a>
+            <a th:href="@{/airports/view}">View Airports</a>
+            <a th:href="@{/flights/add}">Add Flight</a>
+            <a th:href="@{/flights/view}">View Flight</a>
             <a href="/show_bookings">View Flight Bookings</a>
             <a href="/login">Logout</a>
         </div>

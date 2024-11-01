@@ -128,4 +128,16 @@ ALTER TABLE USERS ADD COLUMN role VARCHAR(50);
 ALTER TABLE USERS
 MODIFY COLUMN role VARCHAR(50) DEFAULT 'user';
 SHOW CREATE TABLE USERS;
+ALTER TABLE employee MODIFY COLUMN mobile_number VARCHAR(15);
+ALTER TABLE flights
+DROP CONSTRAINT flights_ibfk_1;
+alter table flights
+drop column airport_id;
+
+ALTER TABLE flights 
+ADD COLUMN arrival_airport_id INT,
+ADD COLUMN departure_airport_id INT,
+ADD CONSTRAINT flights_ibfk_arrival FOREIGN KEY (arrival_airport_id) REFERENCES airport(airport_id) ON DELETE CASCADE,
+ADD CONSTRAINT flights_ibfk_departure FOREIGN KEY (departure_airport_id) REFERENCES airport(airport_id) ON DELETE CASCADE;
+
 

@@ -12,7 +12,8 @@ public class Flight {
     private int economySeatFare;
     private int businessSeatFare;
     private int firstClassSeatFare;
-    private int airportId;
+    private int arrivalAirportId;
+    private int departureAirportId;
     private int airplaneId;
 
     public int getFlightId() {
@@ -79,12 +80,20 @@ public class Flight {
         this.firstClassSeatFare = firstClassSeatFare;
     }
 
-    public int getAirportId() {
-        return airportId;
+    public int getArrivalAirportId() {
+        return arrivalAirportId;
     }
 
-    public void setAirportId(int airportId) {
-        this.airportId = airportId;
+    public void setArrivalAirportId(int arrivalAirportId) {
+        this.arrivalAirportId = arrivalAirportId;
+    }
+
+    public int getDepartureAirportId() {
+        return departureAirportId;
+    }
+
+    public void setDepartureAirportId(int departureAirportId) {
+        this.departureAirportId = departureAirportId;
     }
 
     public int getAirplaneId() {
@@ -100,7 +109,7 @@ public class Flight {
 
     public Flight(int flightId, String flightNumber, LocalDateTime departureTime, LocalDateTime arrivalTime,
                   String flightStatus, int economySeatFare, int businessSeatFare, int firstClassSeatFare,
-                  int airportId, int airplaneId) {
+                  int arrivalAirportId,int departureAirportId, int airplaneId) {
         this.flightId = flightId;
         this.flightNumber = flightNumber;
         this.departureTime = departureTime;
@@ -109,7 +118,8 @@ public class Flight {
         this.economySeatFare = economySeatFare;
         this.businessSeatFare = businessSeatFare;
         this.firstClassSeatFare = firstClassSeatFare;
-        this.airportId = airportId;
+        this.arrivalAirportId = arrivalAirportId;
+        this.departureAirportId = departureAirportId;
         this.airplaneId = airplaneId;
     }
 
@@ -127,7 +137,8 @@ public class Flight {
                 ", economySeatFare=" + economySeatFare +
                 ", businessSeatFare=" + businessSeatFare +
                 ", firstClassSeatFare=" + firstClassSeatFare +
-                ", airportId=" + airportId +
+                ", arrivalAirportId=" + arrivalAirportId +
+                ", departureAirportId=" + departureAirportId +
                 ", airplaneId=" + airplaneId +
                 '}';
     }

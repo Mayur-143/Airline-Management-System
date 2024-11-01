@@ -1,5 +1,6 @@
 package com.example.AirlineManagementSystem.service;
 
+import com.example.AirlineManagementSystem.dto.FlightDTO;
 import com.example.AirlineManagementSystem.model.Flight;
 import com.example.AirlineManagementSystem.repository.FlightRepository;
 import org.springframework.stereotype.Service;
@@ -28,11 +29,12 @@ public class FlightService {
         return flightRepository.findById(flightId);
     }
 
-    public List<Flight> getAllFlights() {
-        return flightRepository.findAll();
+    public List<FlightDTO> getAllFlights() {
+        return flightRepository.findAllWithDetails();
     }
 
     public int deleteFlight(int flightId) {
         return flightRepository.deleteById(flightId);
     }
+
 }

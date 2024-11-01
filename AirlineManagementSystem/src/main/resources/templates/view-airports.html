@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>View Airports</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+    <!-- Updated Include Header -->
+    <div th:replace="~{fragments/adminheader :: adminheader}"></div>
+
+    <h1>Airport List</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Airport ID</th>
+                <th>Airport Name</th>
+                <th>IATA Code</th>
+                <th>Location</th>
+                <th>Address</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="airport : ${airports}">
+                <td th:text="${airport.airportId}"></td>
+                <td th:text="${airport.airportName}"></td>
+                <td th:text="${airport.IATA_code}"></td>
+                <td th:text="${airport.location}"></td>
+                <td th:text="${airport.address}"></td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+</html>

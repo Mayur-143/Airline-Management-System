@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>View Airplanes</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+    <!-- Updated Include Header -->
+    <div th:replace="~{fragments/adminheader :: adminheader}"></div>
+
+    <h1>Airplane List</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Airplane ID</th>
+                <th>Registration No</th>
+                <th>Description</th>
+                <th>Model</th>
+                <th>Total Seats</th>
+                <th>Economy Seats</th>
+                <th>Business Seats</th>
+                <th>First Class Seats</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="airplane : ${airplanes}">
+                <td th:text="${airplane.airplaneId}"></td>
+                <td th:text="${airplane.registrationNo}"></td>
+                <td th:text="${airplane.description}"></td>
+                <td th:text="${airplane.model}"></td>
+                <td th:text="${airplane.totalSeats}"></td>
+                <td th:text="${airplane.totalEconomySeats}"></td>
+                <td th:text="${airplane.totalBusinessSeats}"></td>
+                <td th:text="${airplane.totalFirstClassSeats}"></td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+</html>

@@ -3,27 +3,13 @@
 <head>
     <title>Register Employee</title>
     <link rel="stylesheet" th:href="@{/css/style.css}">
-    <script>
-        function validateForm() {
-            var email = document.getElementById("email").value;
-            if (!validateEmail(email)) {
-                alert("Please enter a valid email address.");
-                return false; // Prevent form submission
-            }
-            return true; // Allow form submission
-        }
-
-        function validateEmail(email) {
-            var re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/; // Simple email regex
-            return re.test(email);
-        }
-    </script>
+    
 </head>
 <body>
     <div th:replace="~{fragments/adminheader :: adminheader}"></div>
 
     <h1>Register Employee</h1>
-    <form id="registerForm" th:action="@{/employees/register}" th:object="${employee}" method="post" onsubmit="return validateForm()">
+    <form id="registerForm" th:action="@{/employees/add}" th:object="${employee}" method="post">
         <div class="name-group">  
             <div class="form-group">  
                 <label>First Name:</label>  
@@ -68,14 +54,29 @@
             <label>Mobile Number:</label>
             <input type="number" th:field="*{mobileNumber}" required/>
         </div>
-        <div class="form-group">
+
+        <!-- <div class="form-group">
             <label>Airport:</label>
             <select th:field="*{airportId}" required>
                 <option value="" disabled selected>Select Airport</option>
-                <!-- Populate airport options from the database -->
-                <option th:each="airport : ${airports}" th:value="${airport.airportId}" th:text="${airport.name}"></option>
+                <option th:each="airport : ${airports}" 
+                        th:value="${airport.airportId}" 
+                        th:text="${airport.airportName}">
+                </option>
+            </select>
+        </div> -->
+        <div class="form-group">
+            <label>Airport:</label>
+            <select th:field="*{airportId}" required>
+                <option value="0" disabled selected>Select Airport</option> <!-- Placeholder option -->
+                <option th:each="airport : ${airports}" 
+                        th:value="${airport.airportId}" 
+                        th:text="${airport.airportName}">
+                </option>
             </select>
         </div>
+        
+        
         <div class="form-group full-width">
             <button type="submit">Register</button>
         </div>

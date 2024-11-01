@@ -12,10 +12,12 @@ public class Employee {
     private String pinCode;
     private String designation;
     private String mobileNumber; // Changed to String for better handling of phone numbers
-    private int airportId;
+    private int airportId=0;
 
     // Constructors
-    public Employee() {}
+    public Employee() {
+        //this.airportId = null;
+    }
 
     public Employee(int employeeId, String firstName, String middleName, String lastName, String street,
                     String city, String state, String country, String pinCode, String designation,

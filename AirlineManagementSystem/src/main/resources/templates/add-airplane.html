@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Add Airplane</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+    <!-- Updated Include Header -->
+    <div th:replace="~{fragments/adminheader :: adminheader}"></div>
+
+    <h1>Add New Airplane</h1>
+    <form th:action="@{/airplanes/add}" th:object="${airplane}" method="post">
+        <label>Registration No:</label>
+        <input type="text" th:field="*{registrationNo}" required /><br/>
+        <label>Description:</label>
+        <input type="text" th:field="*{description}" /><br/>
+        <label>Model:</label>
+        <input type="text" th:field="*{model}" required /><br/>
+        <label>Total Seats:</label>
+        <input type="number" th:field="*{totalSeats}" required /><br/>
+        <label>Total Economy Seats:</label>
+        <input type="number" th:field="*{totalEconomySeats}" /><br/>
+        <label>Total Business Seats:</label>
+        <input type="number" th:field="*{totalBusinessSeats}" /><br/>
+        <label>Total First Class Seats:</label>
+        <input type="number" th:field="*{totalFirstClassSeats}" /><br/>
+        <button type="submit">Add Airplane</button>
+    </form>
+</body>
+</html>

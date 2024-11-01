@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Add Flight</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+    <div th:replace="~{fragments/adminheader :: adminheader}"></div>
+
+    <h1>Add New Flight</h1>
+    <form th:action="@{/flights/add}" th:object="${flight}" method="post">
+        <label>Flight Number:</label>
+        <input type="text" th:field="*{flightNumber}" required /><br/>
+
+        <label>Departure Airport:</label>
+        <select th:field="*{departureAirportId}" required>
+            <option value="0" disabled selected>Select Airport</option>
+            <option th:each="airport : ${airports}" 
+                    th:value="${airport.airportId}" 
+                    th:text="${airport.airportName}">
+            </option>
+        </select>
+
+        <label>Arrival Airport:</label>
+        <select th:field="*{arrivalAirportId}" required>
+            <option value="0" disabled selected>Select Airport</option>
+            <option th:each="airport : ${airports}" 
+                    th:value="${airport.airportId}" 
+                    th:text="${airport.airportName}">
+            </option>
+        </select>
+
+        <label>Airplane:</label>
+        <select th:field="*{airplaneId}" required>
+            <option value="0" disabled selected>Select Airplane</option>
+            <option th:each="airplane : ${airplanes}" 
+                    th:value="${airplane.airplaneId}" 
+                    th:text="${airplane.description}">
+            </option>
+        </select>
+
+        <label>Departure Time:</label>
+        <input type="datetime-local" th:field="*{departureTime}" required /><br/>
+
+        <label>Arrival Time:</label>
+        <input type="datetime-local" th:field="*{arrivalTime}" required /><br/>
+
+        <label>Flight Status:</label>
+        <select th:field="*{flightStatus}">
+            <option value="Scheduled">Scheduled</option>
+            <option value="Completed">Completed</option>
+            <option value="Cancelled">Cancelled</option>
+            <option value="Delayed">Delayed</option>
+        </select><br/>
+
+        <label>Economy Seat Fare:</label>
+        <input type="number" th:field="*{economySeatFare}" required /><br/>
+
+        <label>Business Seat Fare:</label>
+        <input type="number" th:field="*{businessSeatFare}" required /><br/>
+
+        <label>First Class Seat Fare:</label>
+        <input type="number" th:field="*{firstClassSeatFare}" required /><br/>
+
+        <button type="submit">Add Flight</button>
+    </form>
+</body>
+</html>

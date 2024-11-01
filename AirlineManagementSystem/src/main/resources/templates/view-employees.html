@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>View Employees</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+    <!-- adminheader -->
+    <div th:replace="~{fragments/adminheader :: adminheader}"></div>
+
+    <h1>Employee List</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Employee ID</th>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>City</th>
+                <th>Designation</th>
+                <th>Mobile Number</th>
+                <th>Airport ID</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="employee : ${employees}">
+                <td th:text="${employee.employeeId}"></td>
+                <td th:text="${employee.firstName}"></td>
+                <td th:text="${employee.lastName}"></td>
+                <td th:text="${employee.city}"></td>
+                <td th:text="${employee.designation}"></td>
+                <td th:text="${employee.mobileNumber}"></td>
+                <td th:text="${employee.airportId}"></td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+</html>
