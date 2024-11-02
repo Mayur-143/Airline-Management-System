@@ -8,32 +8,35 @@
     <div th:replace="~{fragments/adminheader :: adminheader}"></div>
 
     <h1>Flight List</h1>
-    <table border="1">
-        <tr>
-            <th>Flight Number</th>
-            <th>Departure Time</th>
-            <th>Arrival Time</th>
-            <th>Flight Status</th>
-            <th>Economy Seat Fare</th>
-            <th>Business Seat Fare</th>
-            <th>First Class Seat Fare</th>
-            <th>Departure Airport</th>
-            <th>Arrival Airport</th>
-            <th>Airplane</th>
-        </tr>
-        <tr th:each="flight : ${flights}">
-            <td th:text="${flight.flightNumber}"></td>
-            <td th:text="${flight.departureTime}"></td>
-            <td th:text="${flight.arrivalTime}"></td>
-            <td th:text="${flight.flightStatus}"></td>
-            <td th:text="${flight.economySeatFare}"></td>
-            <td th:text="${flight.businessSeatFare}"></td>
-            <td th:text="${flight.firstClassSeatFare}"></td>
-            <td th:text="${flight.departureAirportName}"></td>  
-            <td th:text="${flight.arrivalAirportName}"></td>   
-            <td th:text="${flight.airplaneName}"></td>
-        </tr>
-                
+    <table>
+        <thead>
+            <tr>
+                <th>Flight Number</th>
+                <th>Departure Time</th>
+                <th>Arrival Time</th>
+                <th>Flight Status</th>
+                <th>Economy Seat Fare</th>
+                <th>Business Seat Fare</th>
+                <th>First Class Seat Fare</th>
+                <th>Departure Airport</th>
+                <th>Arrival Airport</th>
+                <th>Airplane</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="flight : ${flights}">
+                <td th:text="${flight.flightNumber}"></td>
+                <td th:text="${flight.departureTime}"></td>
+                <td th:text="${flight.arrivalTime}"></td>
+                <td th:text="${flight.flightStatus}"></td>
+                <td th:text="${flight.economySeatFare}"></td>
+                <td th:text="${flight.businessSeatFare}"></td>
+                <td th:text="${flight.firstClassSeatFare}"></td>
+                <td th:text="${flight.departureAirportName}"></td>  
+                <td th:text="${flight.arrivalAirportName}"></td>   
+                <td th:text="${flight.airplaneName}"></td>
+            </tr>
+        </tbody>
     </table>
 </body>
 </html>

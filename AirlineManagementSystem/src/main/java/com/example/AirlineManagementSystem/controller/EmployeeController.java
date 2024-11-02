@@ -1,9 +1,7 @@
 package com.example.AirlineManagementSystem.controller;
 
-import com.example.AirlineManagementSystem.model.Airport;
-import com.example.AirlineManagementSystem.model.Employee;
-import com.example.AirlineManagementSystem.service.AirportService;
-import com.example.AirlineManagementSystem.service.EmployeeService;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -12,7 +10,10 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import java.util.List;
+import com.example.AirlineManagementSystem.model.Airport;
+import com.example.AirlineManagementSystem.model.Employee;
+import com.example.AirlineManagementSystem.service.AirportService;
+import com.example.AirlineManagementSystem.service.EmployeeService;
 
 @Controller
 @RequestMapping("/employees")
