@@ -5,11 +5,12 @@ import com.example.AirlineManagementSystem.model.Flight;
 import com.example.AirlineManagementSystem.repository.FlightRepository;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
 @Service
-public class FlightService {
+public class FlightService implements FlightServiceInterface {
 
     private final FlightRepository flightRepository;
 
@@ -37,4 +38,8 @@ public class FlightService {
         return flightRepository.deleteById(flightId);
     }
 
+    @Override
+    public List<FlightDTO> searchFlights(int departureAirportId, int arrivalAirportId, LocalDateTime startDate) {
+        return flightRepository.findFlightsByCriteria(departureAirportId, arrivalAirportId, startDate);
+    }
 }

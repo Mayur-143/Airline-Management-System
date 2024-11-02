@@ -461,6 +461,31 @@ button[type="submit"]:hover {
     background-color: #e67e22;  
 }  
 
+ /* .flight-details-container */
+.flight-details-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 50px;
+}
+
+.card {
+    border: 1px solid #ccc;
+    padding: 20px;
+    width: 60%;
+    background-color: #f9f9f9;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+}
+
+.card h2, .card h3 {
+    color: #333;
+    margin-bottom: 15px;
+}
+
+.card p {
+    margin: 10px 0;
+}
+
 /* Full-width field for elements that should span both columns */  
 .full-width {  
     width: 100%;  

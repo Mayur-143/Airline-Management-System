@@ -11,6 +11,7 @@ import org.springframework.stereotype.Repository;
 
 import java.sql.PreparedStatement;
 import java.sql.Statement;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -91,5 +92,32 @@ public class FlightRepository {
     public int deleteById(int flightId) {
         String sql = "DELETE FROM FLIGHTS WHERE flight_id = ?";
         return jdbcTemplate.update(sql, flightId);
+    }
+
+    public List<FlightDTO> findFlightsByCriteria(int departureAirportId, int arrivalAirportId, LocalDateTime startDate) {
+        String sql = "SELECT f.flight_id, f.flight_number, f.departure_time, f.arrival_time, f.flight_status, "
+                   + "f.economy_seat_fare, f.business_seat_fare, f.first_class_seat_fare, "
+                   + "dep.airport_name AS departure_airport, arr.airport_name AS arrival_airport, a.description "
+                   + "FROM flights f "
+                   + "JOIN airport dep ON f.departure_airport_id = dep.airport_id "
+                   + "JOIN airport arr ON f.arrival_airport_id = arr.airport_id "
+                   + "JOIN airplane a ON f.airplane_id = a.airplane_id "
+                   + "WHERE f.departure_airport_id = ? AND f.arrival_airport_id = ? AND f.departure_time >= ?";
+        
+        return jdbcTemplate.query(sql, new Object[]{departureAirportId, arrivalAirportId, startDate}, 
+            (rs, rowNum) -> {
+                FlightDTO flightDTO = new FlightDTO();
+                flightDTO.setFlightNumber(rs.getString("flight_number"));
+                flightDTO.setDepartureTime(rs.getTimestamp("departure_time").toLocalDateTime());
+                flightDTO.setArrivalTime(rs.getTimestamp("arrival_time").toLocalDateTime());
+                flightDTO.setFlightStatus(rs.getString("flight_status"));
+                flightDTO.setEconomySeatFare(rs.getInt("economy_seat_fare"));
+                flightDTO.setBusinessSeatFare(rs.getInt("business_seat_fare"));
+                flightDTO.setFirstClassSeatFare(rs.getInt("first_class_seat_fare"));
+                flightDTO.setDepartureAirportName(rs.getString("departure_airport"));
+                flightDTO.setArrivalAirportName(rs.getString("arrival_airport"));
+                flightDTO.setAirplaneName(rs.getString("description"));
+                return flightDTO;
+            });
     }
 }

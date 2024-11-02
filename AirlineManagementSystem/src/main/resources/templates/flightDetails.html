@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Flight Details</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+    <div th:replace="~{fragments/header :: header}"></div>
+
+    <div class="flight-details-container">
+        <div class="card">
+            <h2>Flight Details</h2>
+            <p><strong>Flight Number:</strong> <span th:text="${flight.flightNumber}"></span></p>
+            <p><strong>Departure Time:</strong> <span th:text="${flight.departureTime}"></span></p>
+            <p><strong>Arrival Time:</strong> <span th:text="${flight.arrivalTime}"></span></p>
+            <p><strong>Departure Airport:</strong> <span th:text="${flight.departureAirportId}"></span></p>
+            <p><strong>Arrival Airport:</strong> <span th:text="${flight.arrivalAirportId}"></span></p>
+            <p><strong>Status:</strong> <span th:text="${flight.flightStatus}"></span></p>
+
+            <h3>Fare Details</h3>
+            <p><strong>Economy Fare:</strong> $<span th:text="${flight.economySeatFare}"></span></p>
+            <p><strong>Business Fare:</strong> $<span th:text="${flight.businessSeatFare}"></span></p>
+            <p><strong>First Class Fare:</strong> $<span th:text="${flight.firstClassSeatFare}"></span></p>
+
+            <h2>Airplane Details</h2>
+            <p><strong>Airplane Model:</strong> <span th:text="${airplane.model}"></span></p>
+            <p><strong>Total Seats:</strong> <span th:text="${airplane.totalSeats}"></span></p>
+            <p><strong>Total Economy Seats:</strong> <span th:text="${airplane.totalEconomySeats}"></span></p>
+            <p><strong>Total Business Seats:</strong> <span th:text="${airplane.totalBusinessSeats}"></span></p>
+            <p><strong>Total First Class Seats:</strong> <span th:text="${airplane.totalFirstClassSeats}"></span></p>
+
+            <!-- Here you can add a form or button for booking confirmation -->
+            <form th:action="@{/user/booking/details/{flightId}}" method="post">
+                <input type="hidden" name="flightId" th:value="${flight.flightId}">
+                <button type="submit" class="button">Confirm Booking</button>
+            </form>
+        </div>
+    </div>
+
+    <div th:replace="~{fragments/footer :: footer}"></div>
+</body>
+</html>

@@ -41,15 +41,14 @@
 
         // Check if email exists (this will be set by the backend if email is already taken)
         window.onload = function() {
-            var emailExists = /*[[${emailExists}]]*/ false;
+            var emailExists = /*[[${emailExists}]]*/ false; // Ensure this evaluates properly
             if (emailExists) {
-                showErrorModal();
+                showErrorModal(); // Show the modal if the email exists
             }
         };
     </script>  
 </head>  
 <body> 
-    <!-- Updated Include Header -->
     <div th:replace="~{fragments/header :: header}"></div>
 
     <h1>Create Your Account</h1>  
@@ -121,8 +120,9 @@
         <div class="modal-content">
             <span class="close">&times;</span>
             <h3 class="modal-title">Registration Error</h3>
-            <p class="modal-message" th:if="${emailExists}">This email address is already registered. Please use a different email.</p>
+            <p class="modal-message">This email address is already registered. Please use a different email.</p>
         </div>
     </div>
+
 </body>  
 </html>

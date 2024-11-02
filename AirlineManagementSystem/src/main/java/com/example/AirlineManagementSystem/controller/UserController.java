@@ -55,10 +55,13 @@ public class UserController {
 
         // Check if email already exists
         if (userService.primaryEmailExists(primaryEmail)) {
-            model.addAttribute("emailExists", true);
+            model.addAttribute("emailExists", true); // Set error flag for existing email
+            model.addAttribute("user", user); // Retain the user input data (except email)
+            // boolean emailExists = userService.primaryEmailExists(primaryEmail);
+            System.out.println("Email exists: " + primaryEmail); // Log the result
             return "register"; // Stay on the registration page
         }
-
+        
         // Set the primary email and register the user
         user.setPrimaryEmail(primaryEmail);
         userService.addUser(user); // This will save the new user in the database
