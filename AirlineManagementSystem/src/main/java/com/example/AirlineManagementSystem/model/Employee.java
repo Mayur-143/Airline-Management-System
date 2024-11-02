@@ -12,7 +12,8 @@ public class Employee {
     private String pinCode;
     private String designation;
     private String mobileNumber; // Changed to String for better handling of phone numbers
-    private int airportId=0;
+    private Integer airportId;
+
 
     // Constructors
     public Employee() {
@@ -21,7 +22,7 @@ public class Employee {
 
     public Employee(int employeeId, String firstName, String middleName, String lastName, String street,
                     String city, String state, String country, String pinCode, String designation,
-                    String mobileNumber, int airportId) {
+                    String mobileNumber, Integer airportId) {
         this.employeeId = employeeId;
         this.firstName = firstName;
         this.middleName = middleName;
@@ -125,11 +126,11 @@ public class Employee {
         this.mobileNumber = mobileNumber;
     }
 
-    public int getAirportId() {
+    public Integer getAirportId() {
         return airportId;
     }
 
-    public void setAirportId(int airportId) {
+    public void setAirportId(Integer airportId) {
         this.airportId = airportId;
     }
 
