@@ -16,8 +16,8 @@
             <div class="flight-info">
                 <div class="airport-info">
                     <h3>Departure Airport</h3>
-                    <p><strong>Airport:</strong> <span th:text="${flightDetails.departureAirportName}"></span></p>
-                    <p><strong>Departure Time:</strong> <span th:text="${flightDetails.departureTime}"></span></p>
+                    <p><strong>Airport:</strong> <span th:if="${flightDetails != null}" th:text="${flightDetails.departureAirportName}"></span></p>
+                    <p><strong>Departure Time:</strong> <span th:if="${flightDetails != null}" th:text="${flightDetails.departureTime}"></span></p>
                 </div>
 
                 <div class="airport-info">
@@ -57,7 +57,7 @@
             <!-- Booking Class Selection and Continue Button -->
             <div class="booking-class-selection">
                 <h3>Select Booking Class</h3>
-                <form th:action="@{/user/booking/details/{flightId}(flightId=${flightDetails.flightId})}" method="post">
+                <form class="booking-class-form" th:action="@{/user/booking/details/{flightId}(flightId=${flightDetails.flightId})}" method="post">
                     <select name="bookingClass" class="booking-class-dropdown">
                         <option value="economy">Economy Class</option>
                         <option value="business">Business Class</option>

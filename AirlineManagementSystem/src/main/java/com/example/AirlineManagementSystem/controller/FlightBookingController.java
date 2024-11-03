@@ -1,16 +1,8 @@
 package com.example.AirlineManagementSystem.controller;
 
-import org.springframework.format.annotation.DateTimeFormat;
-import org.springframework.stereotype.Controller;
-import com.example.AirlineManagementSystem.dto.FlightDTO;
-import com.example.AirlineManagementSystem.dto.FlightDetailsDTO;
-import com.example.AirlineManagementSystem.model.Airplane;
-import com.example.AirlineManagementSystem.model.Airport;
-import com.example.AirlineManagementSystem.model.Flight;
-import com.example.AirlineManagementSystem.service.AirplaneService;
-import com.example.AirlineManagementSystem.service.AirportService;
-import com.example.AirlineManagementSystem.service.FlightService;
-import com.example.AirlineManagementSystem.service.FlightServiceInterface;
+import java.time.LocalDateTime;
+import java.util.List;
+import java.util.Optional;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -21,9 +13,14 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import java.time.LocalDateTime;
-import java.util.List;
-import java.util.Optional;
+import com.example.AirlineManagementSystem.dto.FlightDTO;
+import com.example.AirlineManagementSystem.dto.FlightDetailsDTO;
+import com.example.AirlineManagementSystem.model.Airplane;
+import com.example.AirlineManagementSystem.model.Airport;
+import com.example.AirlineManagementSystem.model.Flight;
+import com.example.AirlineManagementSystem.service.AirplaneService;
+import com.example.AirlineManagementSystem.service.AirportService;
+import com.example.AirlineManagementSystem.service.FlightServiceInterface;
 
 @Controller
 @RequestMapping("/user")
@@ -110,3 +107,4 @@ public class FlightBookingController {
     }
 
 }
+

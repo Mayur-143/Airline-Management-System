@@ -1,5 +1,12 @@
 package com.example.AirlineManagementSystem.service;
 
+import java.time.LocalDateTime;
+import java.util.List;
+import java.util.Optional;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 import com.example.AirlineManagementSystem.dto.FlightDTO;
 import com.example.AirlineManagementSystem.dto.FlightDetailsDTO;
 import com.example.AirlineManagementSystem.model.Airplane;
@@ -7,13 +14,6 @@ import com.example.AirlineManagementSystem.model.Flight;
 import com.example.AirlineManagementSystem.model.FlightSeats;
 import com.example.AirlineManagementSystem.repository.FlightRepository;
 import com.example.AirlineManagementSystem.repository.FlightSeatsRepository;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
-import java.time.LocalDateTime;
-import java.util.List;
-import java.util.Optional;
 
 @Service
 public class FlightService implements FlightServiceInterface {

@@ -7,7 +7,7 @@
 <body>
     <div th:replace="~{fragments/header :: header}"></div>
     
-    <form th:action="@{/user/booking}" th:object="${flight}" method="post">
+    <form class="search-form" th:action="@{/user/booking}" th:object="${flight}" method="post">
         <label>Departure Airport:</label>
         <select th:field="*{departureAirportId}" required>
             <option value="0" disabled selected>Select Airport</option>
@@ -16,7 +16,7 @@
                     th:text="${airport.airportName}">
             </option>
         </select>
-
+    
         <label>Arrival Airport:</label>
         <select th:field="*{arrivalAirportId}" required>
             <option value="0" disabled selected>Select Airport</option>
@@ -25,10 +25,13 @@
                     th:text="${airport.airportName}">
             </option>
         </select>
-        <input type="datetime-local" name="startDate" placeholder="Select Start Date">
+    
+        <label>Date:</label>
+        <input type="datetime-local" name="startDate" placeholder="Select Start Date" required>
         
         <button type="submit">Search</button>
     </form>
+    
 
     <h1>Flight List</h1>
     <p th:if="${message}" th:text="${message}"></p>
@@ -60,7 +63,7 @@
             <td th:text="${flight.economySeatFare}"></td>
             <td th:text="${flight.businessSeatFare}"></td>
             <td th:text="${flight.firstClassSeatFare}"></td>
-            <td><a th:href="@{/user/booking/details/{flightId}(flightId=${flight.flightId})}" class="button">Book Now</a></td>
+            <td class="book-now"><a th:href="@{/user/booking/details/{flightId}(flightId=${flight.flightId})}" class="button">Book Now</a></td>
 
         </tr>       
     </table>

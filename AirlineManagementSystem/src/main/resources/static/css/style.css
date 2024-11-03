@@ -783,12 +783,77 @@ input[type="submit"]:hover {
 .booking-class-selection {
     text-align: center;
     margin-top: 30px;
+    /* width: 400px; */
+}
+.booking-class-form{
+    width: 600px;
 }
 .booking-class-dropdown {
     padding: 10px;
-    width: 60%;
+    width: 600px;
     font-size: 16px;
     border-radius: 5px;
     border: 1px solid #ddd;
     margin-bottom: 15px;
 }
+
+
+/* Book now button */
+.book-now {
+    text-align: center; /* Center align the button in the cell */
+}
+
+.button {
+    display: inline-block; /* Make the link behave like a button */
+    padding: 10px 20px; /* Add some padding for a better size */
+    background-color:#2c3e50; /* Set a blue background color */
+    color: white; /* White text color */
+    font-size: 12px; /* Increase font size */
+    font-weight: bold; /* Make the text bold */
+    border: none; /* Remove border */
+    border-radius: 5px; /* Rounded corners */
+    text-decoration: none; /* Remove underline from the link */
+    transition: background-color 0.3s ease; /* Smooth background transition */
+}
+
+.button:hover {
+    background-color:#e67e22; /* Darker blue on hover */
+    cursor: pointer; /* Pointer cursor on hover */
+}
+
+/* search form style */
+
+.search-form {
+    display: flex; /* Use flexbox for alignment */
+    justify-content: space-between; /* Space items evenly */
+    align-items: center; /* Center items vertically */
+    gap: 10px; /* Space between items */
+   width: 1200px;
+}
+
+.search-form label {
+    margin: 0; /* Remove any margin from labels */
+}
+
+.search-form select,
+.search-form input[type="datetime-local"],
+.search-form button {
+    flex: 1; /* Make each input take equal space */
+    padding: 10px; /* Add padding */
+    border: 1px solid #ccc; /* Add border */
+    border-radius: 4px; /* Rounded corners */
+    font-size: 14px; /* Font size */
+    
+}
+
+.search-form button {
+    background-color: #2c3e50; /* Button color */
+    color: white; /* Button text color */
+    cursor: pointer; /* Pointer cursor on hover */
+    transition: background-color 0.3s; /* Transition effect */
+}
+
+.search-form button:hover {
+    background-color: #e67e22; /* Change button color on hover */
+}
+
