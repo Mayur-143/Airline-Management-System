@@ -3,6 +3,7 @@ package com.example.AirlineManagementSystem.controller;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
 import com.example.AirlineManagementSystem.dto.FlightDTO;
+import com.example.AirlineManagementSystem.dto.FlightDetailsDTO;
 import com.example.AirlineManagementSystem.model.Airplane;
 import com.example.AirlineManagementSystem.model.Airport;
 import com.example.AirlineManagementSystem.model.Flight;
@@ -78,16 +79,29 @@ public class FlightBookingController {
     }
 
     
+    // @GetMapping("/booking/details/{flightId}")
+    // public String getFlightDetails(@PathVariable("flightId") int flightId, Model model) {
+    //     Optional<FlightDTO> flightOpt = flightService.getFlightById(flightId);
+
+    //     if (flightOpt.isPresent()) {
+    //         FlightDTO flight = flightOpt.get();
+    //         Optional<Airplane> airplane = airplaneService.getAirplaneById(flight.getAirplaneId());
+
+    //         model.addAttribute("flight", flight);
+    //         model.addAttribute("airplane", airplane.orElse(null));
+    //     } else {
+    //         model.addAttribute("message", "Flight not found.");
+    //     }
+
+    //     return "flightDetails";  // View for displaying flight details
+    // }
     @GetMapping("/booking/details/{flightId}")
     public String getFlightDetails(@PathVariable("flightId") int flightId, Model model) {
-        Optional<Flight> flightOpt = flightService.getFlightById(flightId);
+        // Fetch FlightDetailsDTO directly, including all flight and airplane details
+        Optional<FlightDetailsDTO> flightDetailsOpt = flightService.getFlightDetailsById(flightId);
 
-        if (flightOpt.isPresent()) {
-            Flight flight = flightOpt.get();
-            Optional<Airplane> airplane = airplaneService.getAirplaneById(flight.getAirplaneId());
-
-            model.addAttribute("flight", flight);
-            model.addAttribute("airplane", airplane.orElse(null));
+        if (flightDetailsOpt.isPresent()) {
+            model.addAttribute("flightDetails", flightDetailsOpt.get());
         } else {
             model.addAttribute("message", "Flight not found.");
         }
