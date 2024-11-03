@@ -34,19 +34,21 @@
     <p th:if="${message}" th:text="${message}"></p>
 
     <table border="1" th:if="${flights.size() > 0}">
-        <tr>
-            <th>Flight Number</th>
-            <th>Departure Airport</th>
-            <th>Arrival Airport</th>
-            <th>Airplane</th>
-            <th>Departure Time</th>
-            <th>Arrival Time</th>
-            <th>Flight Status</th>
-            <th>Economy Seat Fare</th>
-            <th>Business Seat Fare</th>
-            <th>First Class Seat Fare</th>
-            <th>Action</th>
-        </tr>
+        <thead>
+            <tr>
+                <th>Flight Number</th>
+                <th>Departure Airport</th>
+                <th>Arrival Airport</th>
+                <th>Airplane</th>
+                <th>Departure Time</th>
+                <th>Arrival Time</th>
+                <th>Flight Status</th>
+                <th>Economy Seat Fare</th>
+                <th>Business Seat Fare</th>
+                <th>First Class Seat Fare</th>
+                <th>Action</th>
+            </tr>
+        </thead>
         <tr th:each="flight : ${flights}">
             <td th:text="${flight.flightNumber}"></td>
             <td th:text="${flight.departureAirportName}"></td>  

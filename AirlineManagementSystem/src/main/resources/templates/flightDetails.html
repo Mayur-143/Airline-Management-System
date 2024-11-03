@@ -9,31 +9,63 @@
 
     <div class="flight-details-container">
         <div class="card">
-            <h2>Flight Details</h2>
-            <p><strong>Flight Number:</strong> <span th:text="${flight.flightNumber}"></span></p>
-            <p><strong>Departure Time:</strong> <span th:text="${flight.departureTime}"></span></p>
-            <p><strong>Arrival Time:</strong> <span th:text="${flight.arrivalTime}"></span></p>
-            <p><strong>Departure Airport:</strong> <span th:text="${flight.departureAirportId}"></span></p>
-            <p><strong>Arrival Airport:</strong> <span th:text="${flight.arrivalAirportId}"></span></p>
-            <p><strong>Status:</strong> <span th:text="${flight.flightStatus}"></span></p>
+            <div class="flight-header">
+                <h2>Flight Details</h2>
+            </div>
+            
+            <div class="flight-info">
+                <div class="airport-info">
+                    <h3>Departure Airport</h3>
+                    <p><strong>Airport:</strong> <span th:text="${flightDetails.departureAirportName}"></span></p>
+                    <p><strong>Departure Time:</strong> <span th:text="${flightDetails.departureTime}"></span></p>
+                </div>
 
-            <h3>Fare Details</h3>
-            <p><strong>Economy Fare:</strong> $<span th:text="${flight.economySeatFare}"></span></p>
-            <p><strong>Business Fare:</strong> $<span th:text="${flight.businessSeatFare}"></span></p>
-            <p><strong>First Class Fare:</strong> $<span th:text="${flight.firstClassSeatFare}"></span></p>
+                <div class="airport-info">
+                    <h3>Arrival Airport</h3>
+                    <p><strong>Airport:</strong> <span th:text="${flightDetails.arrivalAirportName}"></span></p>
+                    <p><strong>Arrival Time:</strong> <span th:text="${flightDetails.arrivalTime}"></span></p>
+                </div>
+            </div>
 
-            <h2>Airplane Details</h2>
-            <p><strong>Airplane Model:</strong> <span th:text="${airplane.model}"></span></p>
-            <p><strong>Total Seats:</strong> <span th:text="${airplane.totalSeats}"></span></p>
-            <p><strong>Total Economy Seats:</strong> <span th:text="${airplane.totalEconomySeats}"></span></p>
-            <p><strong>Total Business Seats:</strong> <span th:text="${airplane.totalBusinessSeats}"></span></p>
-            <p><strong>Total First Class Seats:</strong> <span th:text="${airplane.totalFirstClassSeats}"></span></p>
+            <div class="flight-timing">
+                <p><strong>Status:</strong> <span th:text="${flightDetails.flightStatus}"></span></p>
+            </div>
 
-            <!-- Here you can add a form or button for booking confirmation -->
-            <form th:action="@{/user/booking/details/{flightId}}" method="post">
-                <input type="hidden" name="flightId" th:value="${flight.flightId}">
-                <button type="submit" class="button">Confirm Booking</button>
-            </form>
+            <div class="fare-details">
+                <h3>Fare Details</h3>
+                <div class="details-grid">
+                    <p><strong>Economy Fare:</strong> $<span th:text="${flightDetails.economySeatFare}"></span></p>
+                    <p><strong>Business Fare:</strong> $<span th:text="${flightDetails.businessSeatFare}"></span></p>
+                    <p><strong>First Class Fare:</strong> $<span th:text="${flightDetails.firstClassSeatFare}"></span></p>
+                </div>
+            </div>
+
+            <div class="airplane-details">
+                <h3>Airplane Details</h3>
+                <div class="details-grid">
+                    <p><strong>Airplane Model:</strong> <span th:text="${flightDetails.airplaneModel}"></span></p>
+                    <p><strong>Total Seats:</strong> <span th:text="${flightDetails.totalSeats}"></span></p>
+                    <p><strong>Total Economy Seats:</strong> <span th:text="${flightDetails.totalEconomySeats}"></span></p>
+                    <p><strong>Total Business Seats:</strong> <span th:text="${flightDetails.totalBusinessSeats}"></span></p>
+                    <p><strong>Total First Class Seats:</strong> <span th:text="${flightDetails.totalFirstClassSeats}"></span></p>
+                    <p><strong>Available Economy Seats:</strong> <span th:text="${flightDetails.availableEconomySeats}"></span></p>
+                    <p><strong>Available Business Seats:</strong> <span th:text="${flightDetails.availableBusinessSeats}"></span></p>
+                    <p><strong>Available First Class Seats:</strong> <span th:text="${flightDetails.availableFirstClassSeats}"></span></p>
+                </div>
+            </div>
+
+            <!-- Booking Class Selection and Continue Button -->
+            <div class="booking-class-selection">
+                <h3>Select Booking Class</h3>
+                <form th:action="@{/user/booking/details/{flightId}(flightId=${flightDetails.flightId})}" method="post">
+                    <select name="bookingClass" class="booking-class-dropdown">
+                        <option value="economy">Economy Class</option>
+                        <option value="business">Business Class</option>
+                        <option value="first">First Class</option>
+                    </select>
+                    <button type="submit" class="button">Continue</button>
+                </form>
+            </div>
         </div>
     </div>
 

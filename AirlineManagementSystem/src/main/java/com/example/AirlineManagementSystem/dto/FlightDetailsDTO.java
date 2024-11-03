@@ -2,7 +2,7 @@ package com.example.AirlineManagementSystem.dto;
 
 import java.time.LocalDateTime;
 
-public class FlightDTO {
+public class FlightDetailsDTO {
     private int flightId;
     private String flightNumber;
     private LocalDateTime departureTime;
@@ -15,7 +15,16 @@ public class FlightDTO {
     private String departureAirportName;
     private String arrivalAirportName;
     private String airplaneName;
-    private int airplaneId;
+
+    // New airplane-specific fields
+    private String airplaneModel;
+    private int totalSeats;
+    private int totalEconomySeats;
+    private int totalBusinessSeats;
+    private int totalFirstClassSeats;
+    private int availableEconomySeats;
+    private int availableBusinessSeats;
+    private int availableFirstClassSeats;
 
     // Getters and setters for all fields
 
@@ -107,11 +116,67 @@ public class FlightDTO {
         this.airplaneName = airplaneName;
     }
 
-    public int getAirplaneId() {  // Add getter for airplaneId
-        return airplaneId;
+    public String getAirplaneModel() {
+        return airplaneModel;
     }
 
-    public void setAirplaneId(int airplaneId) {  // Add setter for airplaneId
-        this.airplaneId = airplaneId;
+    public void setAirplaneModel(String airplaneModel) {
+        this.airplaneModel = airplaneModel;
+    }
+
+    public int getTotalSeats() {
+        return totalSeats;
+    }
+
+    public void setTotalSeats(int totalSeats) {
+        this.totalSeats = totalSeats;
+    }
+
+    public int getTotalEconomySeats() {
+        return totalEconomySeats;
+    }
+
+    public void setTotalEconomySeats(int totalEconomySeats) {
+        this.totalEconomySeats = totalEconomySeats;
+    }
+
+    public int getTotalBusinessSeats() {
+        return totalBusinessSeats;
+    }
+
+    public void setTotalBusinessSeats(int totalBusinessSeats) {
+        this.totalBusinessSeats = totalBusinessSeats;
+    }
+
+    public int getTotalFirstClassSeats() {
+        return totalFirstClassSeats;
+    }
+
+    public void setTotalFirstClassSeats(int totalFirstClassSeats) {
+        this.totalFirstClassSeats = totalFirstClassSeats;
+    }
+
+    public int getAvailableEconomySeats() {
+        return availableEconomySeats;
+    }
+
+    public void setAvailableEconomySeats(int availableEconomySeats) {
+        this.availableEconomySeats = availableEconomySeats;
+    }
+
+    public int getAvailableBusinessSeats() {
+        return availableBusinessSeats;
+    }
+
+    public void setAvailableBusinessSeats(int availableBusinessSeats) {
+        this.availableBusinessSeats = availableBusinessSeats;
+    }
+
+    public int getAvailableFirstClassSeats() {
+        return availableFirstClassSeats;
+    }
+
+    public void setAvailableFirstClassSeats(int availableFirstClassSeats) {
+        this.availableFirstClassSeats = availableFirstClassSeats;
     }
 }

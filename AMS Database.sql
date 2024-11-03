@@ -63,7 +63,6 @@ CREATE TABLE BOOKING (
     flight_id INT,                         -- Foreign key referencing FLIGHT table
     FOREIGN KEY (user_id) REFERENCES USERS(user_id) ON DELETE CASCADE,
     FOREIGN KEY (flight_id) REFERENCES FLIGHTS(flight_id) ON DELETE CASCADE
-  
 );
 
 CREATE TABLE PASSENGER (
@@ -103,7 +102,6 @@ CREATE TABLE EMPLOYEE(
     mobile_number int,
     airport_id int,
     FOREIGN KEY (airport_id) REFERENCES AIRPORT(airport_id) ON DELETE CASCADE
-
 );
 
 CREATE TABLE PAYMENT_DETAILS(
@@ -140,4 +138,26 @@ ADD COLUMN departure_airport_id INT,
 ADD CONSTRAINT flights_ibfk_arrival FOREIGN KEY (arrival_airport_id) REFERENCES airport(airport_id) ON DELETE CASCADE,
 ADD CONSTRAINT flights_ibfk_departure FOREIGN KEY (departure_airport_id) REFERENCES airport(airport_id) ON DELETE CASCADE;
 
+-- creating a new table for seats
+CREATE TABLE FLIGHT_SEATS (
+    flight_seat_id INT PRIMARY KEY AUTO_INCREMENT,       -- Unique ID for the flight seat record
+    flight_id INT NOT NULL,                              -- Foreign key to the FLIGHTS table
+    available_economy_seats INT NOT NULL,                -- Available economy seats
+    available_business_seats INT NOT NULL,               -- Available business seats
+    available_first_class_seats INT NOT NULL,            -- Available first-class seats
+    FOREIGN KEY (flight_id) REFERENCES FLIGHTS(flight_id) ON DELETE CASCADE
+);
 
+ALTER TABLE booking
+ADD class_type varchar(20);
+
+ALTER TABLE payment_details
+ADD booking_id int;
+
+ALTER TABLE payment_details
+ADD FOREIGN KEY (booking_id) REFERENCES booking(booking_id);
+SHOW CREATE TABLE payment_details;
+ALTER TABLE payment_details
+DROP CONSTRAINT payment_details_ibfk_1;
+alter table payment_details
+drop column user_id;
