@@ -42,5 +42,9 @@ public class BookingService {
     public void updateBookingStatus(int bookingId, String status) {
         bookingRepository.updateBookingStatus(bookingId, status);
     }
+
+    public void updateUserId(int bookingId,int userId){
+        bookingRepository.updateUserId(bookingId,userId);
+    }
     
 }

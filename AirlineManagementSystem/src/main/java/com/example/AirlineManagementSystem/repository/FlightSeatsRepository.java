@@ -41,4 +41,9 @@ public class FlightSeatsRepository {
         String sql = "SELECT * FROM FLIGHT_SEATS WHERE flight_id = ?";
         return jdbcTemplate.queryForObject(sql, new FlightSeatsRowMapper(), flightId);
     }
+
+    public int updateAvailableSeats(int flightId, int economySeats, int businessSeats, int firstClassSeats) {
+        String sql = "UPDATE flight_Seats SET available_economy_seats = ?, available_business_seats = ?, available_first_class_seats = ? WHERE flight_id = ?";
+        return jdbcTemplate.update(sql, economySeats, businessSeats, firstClassSeats, flightId);
+    }
 }

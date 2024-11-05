@@ -100,8 +100,7 @@ public class BookingController {
 
 
     @GetMapping("/confirmation/{bookingId}")
-    public String finalizeBooking(@PathVariable int bookingId,
-                                  @RequestParam("userId") int userId) {
+    public String finalizeBooking(@PathVariable int bookingId) {
         
         return "confirmation";
     }
@@ -120,7 +119,7 @@ public class BookingController {
                 case "business":
                     totalFare = flightDetails.getBusinessSeatFare() * numberOfPassengers;
                     break;
-                case "firstclass":
+                case "first":
                     totalFare = flightDetails.getFirstClassSeatFare() * numberOfPassengers;
                     break;
                 default:
