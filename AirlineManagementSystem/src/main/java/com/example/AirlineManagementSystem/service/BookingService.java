@@ -39,6 +39,8 @@ public class BookingService {
         return bookingRepository.findBookingById(bookingId); // Write the SQL query in the repository
     }
 
-    
+    public void updateBookingStatus(int bookingId, String status) {
+        bookingRepository.updateBookingStatus(bookingId, status);
+    }
     
 }
