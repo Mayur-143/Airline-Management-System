@@ -1,13 +1,13 @@
 package com.example.AirlineManagementSystem.service;
 
+import java.util.List;
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.AirlineManagementSystem.model.PaymentDetails;
 import com.example.AirlineManagementSystem.repository.PaymentDetailsRepository;
-
-import java.util.List;
-import java.util.Optional;
 
 @Service
 public class PaymentDetailsService {
