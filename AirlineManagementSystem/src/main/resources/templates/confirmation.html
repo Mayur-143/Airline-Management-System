@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment Details</title>
+    <link rel="stylesheet" href="/css/style.css"> <!-- Link to your CSS for styling -->
+</head>
+<body>
+    <div th:replace="~{fragments/header :: header}"></div>
+
+    <!-- confirmation.html -->
+    <h2>Booking Confirmed!</h2>
+    <p>Your payment was successful. Booking ID: <span th:text="${bookingId}"></span></p>
+    <p>Thank you for booking with us!</p>
+
+
+    <div th:replace="~{fragments/footer :: footer}"></div>
+    
+</body>
+</html>

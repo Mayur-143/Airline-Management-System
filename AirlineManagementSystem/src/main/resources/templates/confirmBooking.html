@@ -59,9 +59,11 @@
 
         <!-- Proceed to Payment Button -->
         <div class="payment-button">
-            <form th:action="@{/user/payment/{bookingId}(bookingId=${booking.bookingId})}" method="post">
-                <button type="submit" class="btn btn-primary">Proceed to Payment</button>
+            <form th:action="@{/user/booking/payment/{bookingId}(bookingId=${booking.bookingId})}" method="get">
+                <input type="hidden" name="totalFare" th:value="${totalFare}" />
+                <button type="submit">Proceed to Payment</button>
             </form>
+            
         </div>
 
     </div>

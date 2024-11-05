@@ -116,6 +116,10 @@ public int save(Booking booking) {
         jdbcTemplate.update(sql, totalPassengers, bookingId);
     }
 
+    public void updateBookingStatus(int bookingId, String status) {
+        String sql = "UPDATE booking SET status = ? WHERE booking_id = ?";
+        jdbcTemplate.update(sql, status, bookingId);
+    }
     
 }
 

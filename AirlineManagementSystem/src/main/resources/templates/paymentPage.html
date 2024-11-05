@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment Details</title>
+    <link rel="stylesheet" href="/css/style.css"> <!-- Link to your CSS for styling -->
+</head>
+<body>
+    <div th:replace="~{fragments/header :: header}"></div>
+
+    <!-- paymentPage.html -->
+    <h2>Payment Page</h2>
+    <p>Total Fare: <span th:text="${totalFare}"></span></p>
+    <form th:action="@{/user/booking/payment/process/{bookingId}(bookingId=${bookingId})}" method="post">
+        <input type="hidden" name="userId" th:value="${userId}" />
+        <input type="hidden" name="totalFare" th:value="${totalFare}" />
+        <input type="hidden" name="bookingId" th:value="${bookingId}" />
+        
+        <label for="cardNumber">Card Number:</label>
+        <input type="text" id="cardNumber" name="cardNumber" required />
+        
+        <label for="cardHolderName">Card Holder Name:</label>
+        <input type="text" id="cardHolderName" name="cardHolderName" required />
+        
+        <label for="cvv">CVV:</label>
+        <input type="text" id="cvv" name="cvv" required />
+        
+        <label for="expiryDate">Expiry Date:</label>
+        <input type="date" id="expiryDate" name="expiryDate" required />
+
+        <button type="submit">Pay</button>
+    </form>
+
+
+    <div th:replace="~{fragments/footer :: footer}"></div>
+    
+</body>
+</html>

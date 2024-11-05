@@ -103,15 +103,11 @@ public class BookingController {
 
 
 
-
-
-    @PostMapping("/confirm/{bookingId}")
+    @GetMapping("/confirmation/{bookingId}")
     public String finalizeBooking(@PathVariable int bookingId,
                                   @RequestParam("userId") int userId) {
-        List<Passenger> passengers = passengerService.getPassengersByBookingId(bookingId);
-        int totalPassengers = passengers.size();
-        bookingService.updateBookingDetails(bookingId, totalPassengers, userId);
-        return "redirect:/user/booking/confirmation";
+        
+        return "confirmation";
     }
 
     public int calculateTotalFare(Booking booking, int numberOfPassengers, FlightDetailsDTO flightDetails) {
@@ -140,8 +136,5 @@ public class BookingController {
     
         return totalFare;
     }
-    
-    
-    
-    
+
 }
