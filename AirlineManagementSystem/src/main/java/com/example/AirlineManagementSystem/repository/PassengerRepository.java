@@ -1,16 +1,17 @@
 package com.example.AirlineManagementSystem.repository;
 
-import com.example.AirlineManagementSystem.model.Passenger;
-import com.example.AirlineManagementSystem.rowmapper.PassengerRowMapper;
+import java.sql.PreparedStatement;
+import java.util.List;
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Repository;
 
-import java.sql.PreparedStatement;
-import java.util.List;
-import java.util.Optional;
+import com.example.AirlineManagementSystem.model.Passenger;
+import com.example.AirlineManagementSystem.rowmapper.PassengerRowMapper;
 
 @Repository
 public class PassengerRepository {

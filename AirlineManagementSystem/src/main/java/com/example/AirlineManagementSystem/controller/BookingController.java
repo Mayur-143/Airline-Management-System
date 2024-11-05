@@ -2,7 +2,6 @@ package com.example.AirlineManagementSystem.controller;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -14,11 +13,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.example.AirlineManagementSystem.dto.BookingConfirmationDTO;
 import com.example.AirlineManagementSystem.dto.FlightDetailsDTO;
-import com.example.AirlineManagementSystem.dto.PassengerDTO;
 import com.example.AirlineManagementSystem.model.Booking;
-import com.example.AirlineManagementSystem.model.Flight;
 import com.example.AirlineManagementSystem.model.Passenger;
 import com.example.AirlineManagementSystem.model.PassengerListForm;
 import com.example.AirlineManagementSystem.service.AirplaneService;

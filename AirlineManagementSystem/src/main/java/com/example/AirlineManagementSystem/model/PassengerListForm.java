@@ -1,7 +1,7 @@
 package com.example.AirlineManagementSystem.model;
 
-import java.util.List;
 import java.util.ArrayList;
+import java.util.List;
 
 public class PassengerListForm {
     private List<Passenger> passengers = new ArrayList<>(); // Initialize the list

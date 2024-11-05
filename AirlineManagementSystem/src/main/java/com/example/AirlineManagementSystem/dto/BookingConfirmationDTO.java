@@ -1,7 +1,7 @@
 package com.example.AirlineManagementSystem.dto;
 
-import java.util.List;
 import java.time.LocalDateTime;
+import java.util.List;
 
 public class BookingConfirmationDTO {
 

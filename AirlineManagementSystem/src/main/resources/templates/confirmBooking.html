@@ -9,20 +9,26 @@
 <body>
     <div th:replace="~{fragments/header :: header}"></div>
 
-    <div class="container">
+    <div class="booking-container">
         <h1>Booking Confirmation</h1>
+        <h2>Flight Details</h2>
 
         <!-- Flight Details Section -->
-        <div class="flight-details">
-            <h2>Flight Details</h2>
-            <p><strong>Flight Number:</strong> <span th:text="${flightDetails.flightNumber}"></span></p>
-            <p><strong>Departure Time:</strong> <span th:text="${flightDetails.departureTime}"></span></p>
-            <p><strong>Arrival Time:</strong> <span th:text="${flightDetails.arrivalTime}"></span></p>
-            <p><strong>Departure Airport:</strong> <span th:text="${flightDetails.departureAirportName}"></span></p>
-            <p><strong>Arrival Airport:</strong> <span th:text="${flightDetails.arrivalAirportName}"></span></p>
-            <p><strong>Airplane Model:</strong> <span th:text="${flightDetails.airplaneModel}"></span></p>
+        <div class="booking-flight-details">
+            <div class="left-column">
+                <p><strong>Flight Number:</strong> <span th:text="${flightDetails.flightNumber}"></span></p>
+                <p><strong>Departure Airport:</strong> <span th:text="${flightDetails.departureAirportName}"></span></p>
+                <p><strong>Departure Time:</strong> <span th:text="${flightDetails.departureTime}"></span></p>
+            </div>
+            <div class="right-column">
+                <p><strong>Airplane Model:</strong> <span th:text="${flightDetails.airplaneModel}"></span></p>
+                <p><strong>Arrival Airport:</strong> <span th:text="${flightDetails.arrivalAirportName}"></span></p>
+                <p><strong>Arrival Time:</strong> <span th:text="${flightDetails.arrivalTime}"></span></p>
+                
+            </div>
         </div>
-
+        
+ 
         <!-- Passenger Details Section -->
         <div class="passenger-details">
             <h2>Passenger Details</h2>
@@ -59,7 +65,8 @@
 
         <!-- Proceed to Payment Button -->
         <div class="payment-button">
-            <form th:action="@{/user/payment/{bookingId}(bookingId=${booking.bookingId})}" method="post">
+            <form th:action="@{/user/booking/payment/{bookingId}(bookingId=${booking.bookingId})}" method="get">
+                <input type="hidden" name="totalFare" th:value="${totalFare}"/>
                 <button type="submit" class="btn btn-primary">Proceed to Payment</button>
             </form>
         </div>

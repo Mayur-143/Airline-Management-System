@@ -599,7 +599,7 @@ table tbody tr:nth-child(odd) {
 }
 
 table tbody tr:hover {
-    background-color: #e67e22; /* Orange on hover */
+    background-color:rgb(233, 233, 233); /* Orange on hover */
     color: #ffffff;
 }
 
@@ -856,4 +856,91 @@ input[type="submit"]:hover {
 .search-form button:hover {
     background-color: #e67e22; /* Change button color on hover */
 }
+
+
+
+/* Booking Confirmation Page Styling */
+.booking-container {
+    max-width: 850px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+}
+
+.booking-flight-details {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.booking-flight-details .left-column,
+.booking-flight-details .right-column {
+    width: 35%; /* Adjusts width of each column */
+}
+
+.booking-flight-details h2 {
+    width: 100%;
+    text-align: center;
+    color: #2c3e50;
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+}
+
+.booking-flight-details p {
+    font-size: 1rem;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+/* Styling for Passenger Details */
+.passenger-details {
+    margin-top: 20px;
+}
+
+.passenger-details table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+
+.passenger-details th,
+.passenger-details td {
+    padding: 10px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+/* Styling for Total Fare Section */
+.fare-details {
+    margin-top: 20px;
+}
+
+.fare-details p {
+    font-size: 1rem;
+    color: #333;
+}
+
+/* Button styling */
+.payment-button {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.payment-button button {
+    background-color: #2c3e50;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background-color 0.3s;
+}
+
+.payment-button button:hover {
+    background-color: #e67e22;
+}
+
 
