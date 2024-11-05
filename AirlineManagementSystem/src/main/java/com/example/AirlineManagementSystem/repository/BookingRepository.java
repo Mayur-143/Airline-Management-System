@@ -28,27 +28,27 @@ public class BookingRepository {
 
     // Method to save a new booking
 
-public int save(Booking booking) {
-    String sql = "INSERT INTO BOOKING (booking_date, total_passenger, status, user_id, flight_id) VALUES (?, ?, ?, ?, ?)";
+    public int save(Booking booking) {
+        String sql = "INSERT INTO BOOKING (booking_date, total_passenger, status, user_id, flight_id) VALUES (?, ?, ?, ?, ?)";
 
-    KeyHolder keyHolder = new GeneratedKeyHolder(); // Create a KeyHolder to hold the generated key
+        KeyHolder keyHolder = new GeneratedKeyHolder(); // Create a KeyHolder to hold the generated key
 
-    jdbcTemplate.update(conn -> { // Change the lambda parameter name to 'conn'
-        PreparedStatementCreator psc = (connection) -> {
-            var ps = connection.prepareStatement(sql, new String[]{"booking_id"}); // Specify the key column
-            ps.setTimestamp(1, Timestamp.valueOf(booking.getBookingDate())); // Convert LocalDateTime to Timestamp
-            ps.setInt(2, booking.getTotalPassenger()); // Set total_passenger
-            ps.setString(3, booking.getStatus()); // Set status
-            ps.setInt(4, booking.getUserId()); // Set user_id
-            ps.setInt(5, booking.getFlightId()); // Set flight_id
-            return ps;
-        };
-        return psc.createPreparedStatement(conn); // Use 'conn' here
-    }, keyHolder);
+        jdbcTemplate.update(conn -> { // Change the lambda parameter name to 'conn'
+            PreparedStatementCreator psc = (connection) -> {
+                var ps = connection.prepareStatement(sql, new String[]{"booking_id"}); // Specify the key column
+                ps.setTimestamp(1, Timestamp.valueOf(booking.getBookingDate())); // Convert LocalDateTime to Timestamp
+                ps.setInt(2, booking.getTotalPassenger()); // Set total_passenger
+                ps.setString(3, booking.getStatus()); // Set status
+                ps.setInt(4, booking.getUserId()); // Set user_id
+                ps.setInt(5, booking.getFlightId()); // Set flight_id
+                return ps;
+            };
+            return psc.createPreparedStatement(conn); // Use 'conn' here
+        }, keyHolder);
 
-    // Return the generated booking_id
-    return keyHolder.getKey().intValue();
-}
+        // Return the generated booking_id
+        return keyHolder.getKey().intValue();
+    }
 
     // Method to find a booking by ID
     public Optional<Booking> findById(int bookingId) {
@@ -119,6 +119,11 @@ public int save(Booking booking) {
     public void updateBookingStatus(int bookingId, String status) {
         String sql = "UPDATE booking SET status = ? WHERE booking_id = ?";
         jdbcTemplate.update(sql, status, bookingId);
+    }
+
+    public void updateUserId(int bookingId,int userId){
+        String sql = "UPDATE booking SET user_id = ? WHERE booking_id = ?";
+        jdbcTemplate.update(sql,userId,bookingId);
     }
     
 }
