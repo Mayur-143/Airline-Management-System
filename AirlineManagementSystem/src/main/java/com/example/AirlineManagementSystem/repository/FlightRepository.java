@@ -74,7 +74,7 @@ public class FlightRepository {
     //                        .stream().findFirst();
     // }
     public Optional<Flight> findById(int flightId) {
-        String sql = "SELECT * FROM FLIGHT WHERE flight_id = ?";
+        String sql = "SELECT * FROM FLIGHTS WHERE flight_id = ?";
     
         return jdbcTemplate.query(sql, new FlightRowMapper(), flightId)
                            .stream().findFirst();
@@ -155,5 +155,12 @@ public class FlightRepository {
             return flightDTO;
         });
     }
+
+    public Flight findFlightById(int flightId) {
+        String query = "SELECT * FROM flights WHERE flight_id = ?";
+        return jdbcTemplate.queryForObject(query, new FlightRowMapper(), flightId);
+    }
+    
+    
     
 }

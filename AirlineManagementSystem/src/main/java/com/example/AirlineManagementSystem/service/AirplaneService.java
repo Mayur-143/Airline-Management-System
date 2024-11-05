@@ -40,5 +40,9 @@ public class AirplaneService {
     public int deleteAirplane(int airplaneId) {
         return airplaneRepository.deleteById(airplaneId);
     }
+
+    public String getAirplaneNameById(int airplaneId) {
+        return airplaneRepository.findAirplaneNameById(airplaneId);
+    }
 }
 

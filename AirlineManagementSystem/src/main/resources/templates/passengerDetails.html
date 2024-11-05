@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Passenger Details</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <script>
+        function renderPassengerFields() {
+            const numPassengers = document.getElementById("totalNoPassengers").value;
+            document.getElementById("hiddenTotalNoPassengers").value = numPassengers;  // Update hidden input value
+            const passengerFieldsContainer = document.getElementById("passengerFieldsContainer");
+            passengerFieldsContainer.innerHTML = ''; // Clear previous fields
+
+            for (let i = 0; i < numPassengers; i++) {
+                passengerFieldsContainer.innerHTML += `
+                    <h3>Passenger ${i + 1}</h3>
+                    <div class="name-group">
+                        <div class="form-group">
+                            <label for="firstName_${i}">First Name:</label>
+                            <input type="text" id="firstName_${i}" name="passengers[${i}].firstName" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="middleName_${i}">Middle Name:</label>
+                            <input type="text" id="middleName_${i}" name="passengers[${i}].middleName">
+                        </div>
+                        <div class="form-group">
+                            <label for="lastName_${i}">Last Name:</label>
+                            <input type="text" id="lastName_${i}" name="passengers[${i}].lastName" required>
+                        </div>
+                    </div>
+                    <div class="name-group">
+                        <div class="form-group">
+                            <label for="gender_${i}">Gender:</label>
+                            <select id="gender_${i}" name="passengers[${i}].gender" required>
+                                <option value="" disabled selected>Select Gender</option>
+                                <option value="Male">Male</option>
+                                <option value="Female">Female</option>
+                                <option value="Other">Other</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="age_${i}">Age:</label>
+                            <input type="number" id="age_${i}" name="passengers[${i}].age" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="aadharNumber_${i}">Aadhar Number:</label>
+                        <input type="text" id="aadharNumber_${i}" name="passengers[${i}].aadharNumber" required>
+                    </div>
+                `;
+            }
+        }
+    </script>
+</head>
+<body>
+    <div th:replace="~{fragments/header :: header}"></div>
+
+    <div class="passenger-details-container">
+        <h2>Passenger Details</h2>
+
+        <!-- Passenger details form -->
+        <form th:object="${passengerListForm}" th:action="@{/user/booking/passenger-details/{bookingId}(bookingId=${bookingId})}" method="post">
+            <!-- Select total number of passengers -->
+            <label for="totalNoPassengers">Total Number of Passengers:</label>
+            <select id="totalNoPassengers" name="totalNoPassengers" onchange="renderPassengerFields()">
+                <option value="0" disabled selected>Select Passengers</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+            </select>
+
+            <input type="hidden" id="hiddenTotalNoPassengers" name="totalNoPassengers" value="1">
+            
+            <!-- Dynamic passenger fields container -->
+            <div id="passengerFieldsContainer">
+                <!-- Passenger fields will be rendered here -->
+            </div>
+            
+            <button type="submit" class="button">Add Passenger Details</button>
+        </form>             
+    </div>
+
+    <div th:replace="~{fragments/footer :: footer}"></div>
+</body>
+</html>

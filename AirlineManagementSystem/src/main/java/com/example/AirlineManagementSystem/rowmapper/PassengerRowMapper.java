@@ -16,7 +16,7 @@ public class PassengerRowMapper implements RowMapper<Passenger> {
         passenger.setLastName(rs.getString("last_name"));
         passenger.setGender(rs.getString("gender"));
         passenger.setAge(rs.getInt("age"));
-        passenger.setAadharNumber(rs.getInt("aadhar_number"));
+        passenger.setAadharNumber(rs.getString("aadhar_number"));
         passenger.setBookingId(rs.getInt("booking_id"));
         return passenger;
     }

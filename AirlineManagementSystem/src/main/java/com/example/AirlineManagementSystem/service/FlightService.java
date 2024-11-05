@@ -76,4 +76,9 @@ public class FlightService implements FlightServiceInterface {
         return flightRepository.findFlightDetailsById(flightId);
     }
 
+    public Flight findFlightById(int flightId) {
+        return flightRepository.findFlightById(flightId); // Write the SQL query in the repository
+    }
+    
+
 }

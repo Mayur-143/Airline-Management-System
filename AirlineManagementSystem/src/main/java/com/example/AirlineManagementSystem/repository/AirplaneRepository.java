@@ -69,4 +69,9 @@ public class AirplaneRepository {
         String sql = "DELETE FROM AIRPLANE WHERE airplane_id = ?";
         return jdbcTemplate.update(sql, airplaneId);
     }
+
+    public String findAirplaneNameById(int airplaneId) {
+        String sql = "SELECT description FROM airplane WHERE airplane_id = ?";
+        return jdbcTemplate.queryForObject(sql, String.class, airplaneId);
+    }
 }

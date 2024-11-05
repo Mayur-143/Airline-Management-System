@@ -1,5 +1,3 @@
-// package com.example.AirlineManagementSystem.rowmapper;
-
 package com.example.AirlineManagementSystem.rowmapper;
 
 import com.example.AirlineManagementSystem.model.Booking;
@@ -19,6 +17,7 @@ public class BookingRowMapper implements RowMapper<Booking> {
         booking.setStatus(rs.getString("status"));
         booking.setUserId(rs.getInt("user_id"));
         booking.setFlightId(rs.getInt("flight_id"));
+        booking.setClassType(rs.getString("class_type"));
         return booking;
     }
 }

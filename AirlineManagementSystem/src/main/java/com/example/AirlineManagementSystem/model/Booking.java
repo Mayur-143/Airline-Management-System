@@ -11,17 +11,19 @@ public class Booking {
     private String status;
     private int userId;
     private int flightId;
+    private String classType;
 
     // Constructor
     public Booking() {}
 
-    public Booking(int bookingId, LocalDateTime bookingDate, int totalPassenger, String status, int userId, int flightId) {
+    public Booking(int bookingId, LocalDateTime bookingDate, int totalPassenger, String status, int userId, int flightId, String classType) {
         this.bookingId = bookingId;
         this.bookingDate = bookingDate;
         this.totalPassenger = totalPassenger;
         this.status = status;
         this.userId = userId;
         this.flightId = flightId;
+        this.classType=classType;
     }
 
     // Getters and Setters
@@ -73,6 +75,14 @@ public class Booking {
         this.flightId = flightId;
     }
 
+    public String getClassType() {
+        return classType;
+    }
+
+    public void setClassType(String classType) {
+        this.classType = classType;
+    }
+
     @Override
     public String toString() {
         return "Booking{" +
@@ -82,6 +92,7 @@ public class Booking {
                 ", status='" + status + '\'' +
                 ", userId=" + userId +
                 ", flightId=" + flightId +
+                ", classType" + classType +
                 '}';
     }
 }

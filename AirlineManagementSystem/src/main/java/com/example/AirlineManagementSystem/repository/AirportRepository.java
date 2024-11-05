@@ -67,4 +67,9 @@ public class AirportRepository {
         String sql = "DELETE FROM AIRPORT WHERE airport_id = ?";
         return jdbcTemplate.update(sql, airportId);
     }
+
+    public String findAirportNameById(int airportId) {
+        String sql = "SELECT airport_name FROM airport WHERE airport_id = ?";
+        return jdbcTemplate.queryForObject(sql, String.class, airportId);
+    }
 }

@@ -40,4 +40,14 @@ public class AirportService {
     public int deleteAirport(int airportId) {
         return airportRepository.deleteById(airportId);
     }
+
+    public String getAirportNameById(int airportId) {
+        return airportRepository.findAirportNameById(airportId);
+    }
+
+    public String findAirportNameById(int airportId) {
+        return airportRepository.findAirportNameById(airportId); // Write the SQL query in the repository
+    }
+    
+    
 }

@@ -4,6 +4,19 @@ import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
+import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.stereotype.Controller;
+import com.example.AirlineManagementSystem.dto.FlightDTO;
+import com.example.AirlineManagementSystem.dto.FlightDetailsDTO;
+import com.example.AirlineManagementSystem.model.Airplane;
+import com.example.AirlineManagementSystem.model.Airport;
+import com.example.AirlineManagementSystem.model.Flight;
+import com.example.AirlineManagementSystem.service.AirplaneService;
+import com.example.AirlineManagementSystem.service.AirportService;
+import com.example.AirlineManagementSystem.service.BookingService;
+import com.example.AirlineManagementSystem.service.FlightService;
+import com.example.AirlineManagementSystem.service.FlightServiceInterface;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,14 +26,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.example.AirlineManagementSystem.dto.FlightDTO;
-import com.example.AirlineManagementSystem.dto.FlightDetailsDTO;
-import com.example.AirlineManagementSystem.model.Airplane;
-import com.example.AirlineManagementSystem.model.Airport;
-import com.example.AirlineManagementSystem.model.Flight;
-import com.example.AirlineManagementSystem.service.AirplaneService;
-import com.example.AirlineManagementSystem.service.AirportService;
-import com.example.AirlineManagementSystem.service.FlightServiceInterface;
 
 @Controller
 @RequestMapping("/user")
@@ -29,11 +34,14 @@ public class FlightBookingController {
     private final FlightServiceInterface flightService;
     private final AirportService airportService;
     private final AirplaneService airplaneService;
+    private BookingService bookingService;
 
-    public FlightBookingController(FlightServiceInterface flightService, AirportService airportService, AirplaneService airplaneService) {
+
+    public FlightBookingController(FlightServiceInterface flightService, AirportService airportService, AirplaneService airplaneService, BookingService bookingService) {
         this.flightService = flightService;
         this.airportService = airportService;
         this.airplaneService = airplaneService;
+        this.bookingService = bookingService; 
     }
     
     @GetMapping("/booking")
@@ -76,22 +84,6 @@ public class FlightBookingController {
     }
 
     
-    // @GetMapping("/booking/details/{flightId}")
-    // public String getFlightDetails(@PathVariable("flightId") int flightId, Model model) {
-    //     Optional<FlightDTO> flightOpt = flightService.getFlightById(flightId);
-
-    //     if (flightOpt.isPresent()) {
-    //         FlightDTO flight = flightOpt.get();
-    //         Optional<Airplane> airplane = airplaneService.getAirplaneById(flight.getAirplaneId());
-
-    //         model.addAttribute("flight", flight);
-    //         model.addAttribute("airplane", airplane.orElse(null));
-    //     } else {
-    //         model.addAttribute("message", "Flight not found.");
-    //     }
-
-    //     return "flightDetails";  // View for displaying flight details
-    // }
     @GetMapping("/booking/details/{flightId}")
     public String getFlightDetails(@PathVariable("flightId") int flightId, Model model) {
         // Fetch FlightDetailsDTO directly, including all flight and airplane details
@@ -106,5 +98,10 @@ public class FlightBookingController {
         return "flightDetails";  // View for displaying flight details
     }
 
-}
+    @PostMapping("/booking/details/{flightId}")
+    public String createBooking(@PathVariable int flightId, @RequestParam("bookingClass") String classType) {
+        int bookingId =bookingService.createBooking(flightId, classType);
+        return "redirect:/user/booking/passenger-details/" + bookingId; // Pass bookingId here
+    }
 
+}

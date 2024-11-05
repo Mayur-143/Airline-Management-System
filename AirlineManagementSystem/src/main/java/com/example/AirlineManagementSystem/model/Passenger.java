@@ -7,13 +7,13 @@ public class Passenger {
     private String lastName;
     private String gender;
     private int age;
-    private int aadharNumber;
+    private String aadharNumber;
     private int bookingId;
 
     // Constructors
     public Passenger() {}
 
-    public Passenger(int passengerId, String firstName, String middleName, String lastName, String gender, int age, int aadharNumber, int bookingId) {
+    public Passenger(int passengerId, String firstName, String middleName, String lastName, String gender, int age, String aadharNumber, int bookingId) {
         this.passengerId = passengerId;
         this.firstName = firstName;
         this.middleName = middleName;
@@ -73,11 +73,11 @@ public class Passenger {
         this.age = age;
     }
 
-    public int getAadharNumber() {
+    public String getAadharNumber() {
         return aadharNumber;
     }
 
-    public void setAadharNumber(int aadharNumber) {
+    public void setAadharNumber(String aadharNumber) {
         this.aadharNumber = aadharNumber;
     }
 
