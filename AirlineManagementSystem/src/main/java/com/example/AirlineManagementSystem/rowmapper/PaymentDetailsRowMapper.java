@@ -1,12 +1,11 @@
 package com.example.AirlineManagementSystem.rowmapper;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
 import org.springframework.jdbc.core.RowMapper;
 
 import com.example.AirlineManagementSystem.model.PaymentDetails;
-
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.Date;
 
 public class PaymentDetailsRowMapper implements RowMapper<PaymentDetails> {
     @Override

@@ -1,5 +1,9 @@
 package com.example.AirlineManagementSystem.repository;
 
+import java.sql.PreparedStatement;
+import java.util.List;
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
@@ -8,10 +12,6 @@ import org.springframework.stereotype.Repository;
 
 import com.example.AirlineManagementSystem.model.PaymentDetails;
 import com.example.AirlineManagementSystem.rowmapper.PaymentDetailsRowMapper;
-
-import java.sql.PreparedStatement;
-import java.util.List;
-import java.util.Optional;
 
 @Repository
 public class PaymentDetailsRepository {
