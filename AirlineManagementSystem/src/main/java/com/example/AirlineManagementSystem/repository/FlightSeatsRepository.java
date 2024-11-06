@@ -46,4 +46,26 @@ public class FlightSeatsRepository {
         String sql = "UPDATE flight_Seats SET available_economy_seats = ?, available_business_seats = ?, available_first_class_seats = ? WHERE flight_id = ?";
         return jdbcTemplate.update(sql, economySeats, businessSeats, firstClassSeats, flightId);
     }
+
+    public int getAvailableSeats(int flightId, String classType) {
+        String sql = "";
+        // Determine the column to query based on class type
+        switch (classType.toLowerCase()) {
+            case "economy":
+                sql = "SELECT available_economy_seats FROM flight_seats WHERE flight_id = ?";
+                break;
+            case "business":
+                sql = "SELECT available_business_seats FROM flight_seats WHERE flight_id = ?";
+                break;
+            case "first class":
+                sql = "SELECT available_first_class_seats FROM flight_seats WHERE flight_id = ?";
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid class type: " + classType);
+        }
+    
+        // Execute the query and return the available seats
+        return jdbcTemplate.queryForObject(sql, new Object[]{flightId}, Integer.class);
+    }
+    
 }

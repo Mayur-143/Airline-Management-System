@@ -27,7 +27,7 @@ public class FlightSeatsService {
             case "business":
                 flightSeats.setAvailableBusinessSeats(flightSeats.getAvailableBusinessSeats() - totalPassengers);
                 break;
-            case "first":
+            case "first class":
                 flightSeats.setAvailableFirstClassSeats(flightSeats.getAvailableFirstClassSeats() - totalPassengers);
                 break;
             default:
@@ -41,6 +41,10 @@ public class FlightSeatsService {
             flightSeats.getAvailableBusinessSeats(),
             flightSeats.getAvailableFirstClassSeats()
         );
+    }
+
+    public int getAvailableSeats(int flightId, String classType){
+        return flightSeatsRepository.getAvailableSeats(flightId,classType);
     }
 }
 

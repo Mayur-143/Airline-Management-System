@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>My Bookings</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+    <div th:replace="~{fragments/adminheader :: adminheader}"></div>
+
+    <h2>My Bookings</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Booking ID</th>
+                <th>Date</th>
+                <th>Status</th>
+                <th>Passenger</th>
+                <th>Age</th>
+                <th>Gender</th>
+                <th>Flight No.</th>
+                <th>Departure</th>
+                <th>Arrival</th>
+                <th>Departure Airport</th>
+                <th>Arrival Airport</th>
+                <th>Seat Fare</th>
+                <th>Class</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="booking : ${bookingDetails}">
+                <td th:text="${booking.bookingId}"></td>
+                <td th:text="${booking.bookingDateTime}"></td>
+                <td th:text="${booking.status}"></td>
+                <td th:text="${booking.passengerName}"></td>
+                <td th:text="${booking.age}"></td>
+                <td th:text="${booking.gender}"></td>
+                <td th:text="${booking.flightNumber}"></td>
+                <td th:text="${booking.departureTime}"></td>
+                <td th:text="${booking.arrivalTime}"></td>
+                <td th:text="${booking.departureAirport}"></td>
+                <td th:text="${booking.arrivalAirport}"></td>
+                <td th:text="${booking.seatFare}"></td>
+                <td th:text="${booking.flightClass}"></td>
+            </tr>
+        </tbody>
+    </table>
+
+    
+</body>
+</html>

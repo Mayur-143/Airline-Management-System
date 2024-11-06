@@ -80,7 +80,7 @@ public class PaymentDetailsController {
     
     @PostMapping("/process/{bookingId}")
     public String processPayment(@PathVariable int bookingId,
-                                @RequestParam("cardNumber") int cardNumber,
+                                @RequestParam("cardNumber") String cardNumber,
                                 @RequestParam("cardHolderName") String cardHolderName,
                                 @RequestParam("cvv") int cvv,
                                 @RequestParam("expiryDate") String expiryDateStr,
@@ -116,13 +116,18 @@ public class PaymentDetailsController {
 
                 // Save payment details and update booking status
                 paymentDetailsService.savePaymentDetails(paymentDetails);
-                bookingService.updateBookingStatus(bookingId, "Confirmed");
-                bookingService.updateUserId(bookingId,userId);
-
                 Booking booking = bookingService.findBookingById(bookingId);
                 String classType = booking.getClassType();
                 int totalPassenger = booking.getTotalPassenger();
                 int flightId = booking.getFlightId();
+                // Check available seats for the specific flight and class type
+                int availableSeats = flightSeatsService.getAvailableSeats(flightId, classType);
+
+                // Determine booking status based on available seats
+                String bookingStatus = (availableSeats - totalPassenger) <= 0 ? "Waiting" : "Confirmed";
+
+                bookingService.updateBookingStatus(bookingId,bookingStatus);
+                bookingService.updateUserId(bookingId,userId);
 
                 // Update available seats based on class type
                 flightSeatsService.updateAvailableSeats(flightId, classType, totalPassenger);

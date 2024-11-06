@@ -163,3 +163,5 @@ alter table payment_details
 drop column user_id;
 alter table contact modify column phone_number varchar(15);
 ALTER TABLE passenger MODIFY COLUMN aadhar_number VARCHAR(15);
+ALTER TABLE payment_details
+ADD amount int;

@@ -12,16 +12,21 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import com.example.AirlineManagementSystem.dto.FlightDetailsDTO;
 import com.example.AirlineManagementSystem.model.Booking;
 import com.example.AirlineManagementSystem.model.Passenger;
 import com.example.AirlineManagementSystem.model.PassengerListForm;
+import com.example.AirlineManagementSystem.model.User;
 import com.example.AirlineManagementSystem.service.AirplaneService;
 import com.example.AirlineManagementSystem.service.AirportService;
 import com.example.AirlineManagementSystem.service.BookingService;
 import com.example.AirlineManagementSystem.service.FlightService;
 import com.example.AirlineManagementSystem.service.PassengerService;
+import com.example.AirlineManagementSystem.service.UserService;
+import com.example.AirlineManagementSystem.dto.BookingDetailsDTO;
+import org.springframework.security.core.userdetails.UserDetails;
+import com.example.AirlineManagementSystem.model.User;
 
 @Controller
 @RequestMapping("/user/booking")
@@ -32,14 +37,16 @@ public class BookingController {
     private final FlightService flightService;
     private final AirplaneService airplaneService;
     private final AirportService airportService;
+    private final UserService userService;
 
     @Autowired
-    public BookingController(BookingService bookingService, PassengerService passengerService, FlightService flightService, AirplaneService airplaneService, AirportService airportService) {
+    public BookingController(BookingService bookingService, PassengerService passengerService, FlightService flightService, AirplaneService airplaneService, AirportService airportService, UserService userService) {
         this.bookingService = bookingService;
         this.passengerService = passengerService;
         this.flightService = flightService;
         this.airplaneService = airplaneService;
         this.airportService = airportService ;
+        this.userService = userService ;
     }
 
     @GetMapping("/passenger-details/{bookingId}")
@@ -70,6 +77,21 @@ public class BookingController {
             bookingService.updateTotalPassengers(bookingId, totalNoPassengers);
         }
         return "redirect:/user/booking/confirm/" + bookingId;
+    }
+
+    @GetMapping("/view_bookings")
+    public String viewBookings(@AuthenticationPrincipal UserDetails userDetails, Model model) {
+        Optional<User> optionalUser = userService.findUserByPrimaryEmail(userDetails.getUsername());
+        if (optionalUser.isPresent()) {
+            User foundUser = optionalUser.get();
+            int userId = foundUser.getUserId();
+            List<BookingDetailsDTO> bookingDetails = bookingService.getBookingsByUserId(userId);
+            model.addAttribute("bookingDetails", bookingDetails);
+            return "viewBookings";
+        } else {
+            // Handle the case where the user is not found (optional)
+            return "redirect:/contacts/add?error";
+        }
     }
 
     // Add a GetMapping for the confirm page
@@ -119,7 +141,7 @@ public class BookingController {
                 case "business":
                     totalFare = flightDetails.getBusinessSeatFare() * numberOfPassengers;
                     break;
-                case "first":
+                case "first class":
                     totalFare = flightDetails.getFirstClassSeatFare() * numberOfPassengers;
                     break;
                 default:

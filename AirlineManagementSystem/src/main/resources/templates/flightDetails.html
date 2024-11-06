@@ -46,11 +46,21 @@
                     <p><strong>Airplane Model:</strong> <span th:text="${flightDetails.airplaneModel}"></span></p>
                     <p><strong>Total Seats:</strong> <span th:text="${flightDetails.totalSeats}"></span></p>
                     <p><strong>Total Economy Seats:</strong> <span th:text="${flightDetails.totalEconomySeats}"></span></p>
-                    <p><strong>Total Business Seats:</strong> <span th:text="${flightDetails.totalBusinessSeats}"></span></p>
+                    
                     <p><strong>Total First Class Seats:</strong> <span th:text="${flightDetails.totalFirstClassSeats}"></span></p>
-                    <p><strong>Available Economy Seats:</strong> <span th:text="${flightDetails.availableEconomySeats}"></span></p>
-                    <p><strong>Available Business Seats:</strong> <span th:text="${flightDetails.availableBusinessSeats}"></span></p>
-                    <p><strong>Available First Class Seats:</strong> <span th:text="${flightDetails.availableFirstClassSeats}"></span></p>
+                    <p><strong>Available Economy Seats:</strong> 
+                        <span th:classappend="${flightDetails.availableEconomySeats <= 0} ? 'not-available'" 
+                              th:text="${flightDetails.availableEconomySeats > 0 ? flightDetails.availableEconomySeats : 'NOT AVAILABLE'}"></span>
+                    </p>
+                    <p><strong>Available Business Seats:</strong> 
+                        <span th:classappend="${flightDetails.availableBusinessSeats <= 0} ? 'not-available'" 
+                              th:text="${flightDetails.availableBusinessSeats > 0 ? flightDetails.availableBusinessSeats : 'NOT AVAILABLE'}"></span>
+                    </p>
+                    <p><strong>Available First Class Seats:</strong> 
+                        <span th:classappend="${flightDetails.availableFirstClassSeats <= 0} ? 'not-available'" 
+                              th:text="${flightDetails.availableFirstClassSeats > 0 ? flightDetails.availableFirstClassSeats : 'NOT AVAILABLE'}"></span>
+                    </p>
+                    
                 </div>
             </div>
 
@@ -59,14 +69,14 @@
                 <h3>Select Booking Class</h3>
                 <form class="booking-class-form" th:action="@{/user/booking/details/{flightId}(flightId=${flightDetails.flightId})}" method="post">
                     <select name="bookingClass" class="booking-class-dropdown">
-                        <option value="economy">Economy Class</option>
-                        <option value="business">Business Class</option>
-                        <option value="first">First Class</option>
+                        <option value="Economy" th:disabled="${flightDetails.availableEconomySeats <= 0}">Economy Class</option>
+                        <option value="Business" th:disabled="${flightDetails.availableBusinessSeats <= 0}">Business Class</option>
+                        <option value="First Class" th:disabled="${flightDetails.availableFirstClassSeats <= 0}">First Class</option>
                     </select>
                     <button type="submit" class="button">Continue</button>
                 </form>
-                
             </div>
+            
         </div>
     </div>
 

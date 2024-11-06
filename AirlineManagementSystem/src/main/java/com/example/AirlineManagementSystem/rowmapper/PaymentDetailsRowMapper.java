@@ -13,7 +13,7 @@ public class PaymentDetailsRowMapper implements RowMapper<PaymentDetails> {
     public PaymentDetails mapRow(ResultSet rs, int rowNum) throws SQLException {
         PaymentDetails paymentDetails = new PaymentDetails();
         paymentDetails.setPaymentId(rs.getInt("payment_id"));
-        paymentDetails.setCardNumber(rs.getInt("card_number"));
+        paymentDetails.setCardNumber(rs.getString("card_number"));
         paymentDetails.setCardHolderName(rs.getString("card_holder_name"));
         paymentDetails.setCvv(rs.getInt("cvv"));
         paymentDetails.setExpiryDate(rs.getDate("expiry_date"));

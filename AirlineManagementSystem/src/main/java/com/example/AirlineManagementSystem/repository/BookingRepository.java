@@ -1,7 +1,9 @@
 package com.example.AirlineManagementSystem.repository;
 
+import com.example.AirlineManagementSystem.dto.BookingDetailsDTO;
 import com.example.AirlineManagementSystem.model.Booking;
 import com.example.AirlineManagementSystem.rowmapper.BookingRowMapper;
+import com.example.AirlineManagementSystem.rowmapper.BookingDetailsRowMapper;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -9,7 +11,7 @@ import org.springframework.jdbc.core.PreparedStatementCreator;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Repository;
-
+import org.springframework.jdbc.core.RowMapper;
 import java.time.LocalDateTime;
 import java.sql.PreparedStatement;
 import java.sql.Timestamp;
@@ -124,6 +126,49 @@ public class BookingRepository {
     public void updateUserId(int bookingId,int userId){
         String sql = "UPDATE booking SET user_id = ? WHERE booking_id = ?";
         jdbcTemplate.update(sql,userId,bookingId);
+    }
+
+    public List<BookingDetailsDTO> findBookingsByUserId(int userId) {
+        String sql = """
+            SELECT b.booking_id, b.booking_date AS bookingDateTime, b.status, CONCAT(IFNULL(p.first_name, ''), ' ', IFNULL(p.middle_name, ''), ' ', IFNULL(p.last_name, '')) AS passengerName,
+                   p.age, p.gender, f.flight_number, f.departure_time, f.arrival_time, 
+                   da.airport_name AS departureAirport, aa.airport_name AS arrivalAirport, 
+                   CASE b.class_type 
+                       WHEN 'Economy' THEN f.economy_seat_fare
+                       WHEN 'Business' THEN f.business_seat_fare
+                       WHEN 'First Class' THEN f.first_class_seat_fare
+                   END AS seatFare,
+                   b.class_type AS flightClass
+            FROM booking b
+            JOIN passenger p ON b.booking_id = p.booking_id
+            JOIN flights f ON b.flight_id = f.flight_id
+            JOIN airport da ON f.departure_airport_id = da.airport_id
+            JOIN airport aa ON f.arrival_airport_id = aa.airport_id
+            WHERE b.user_id = ?
+            ORDER BY b.booking_date DESC;
+        """;
+        return jdbcTemplate.query(sql, new BookingDetailsRowMapper(), userId);
+    }
+
+    public List<BookingDetailsDTO> findBookingDetails(){
+        String sql = """
+            SELECT b.booking_id, b.booking_date AS bookingDateTime, b.status, CONCAT(IFNULL(p.first_name, ''), ' ', IFNULL(p.middle_name, ''), ' ', IFNULL(p.last_name, '')) AS passengerName,
+                   p.age, p.gender, f.flight_number, f.departure_time, f.arrival_time, 
+                   da.airport_name AS departureAirport, aa.airport_name AS arrivalAirport, 
+                   CASE b.class_type 
+                       WHEN 'Economy' THEN f.economy_seat_fare
+                       WHEN 'Business' THEN f.business_seat_fare
+                       WHEN 'First Class' THEN f.first_class_seat_fare
+                   END AS seatFare,
+                   b.class_type AS flightClass
+            FROM booking b
+            JOIN passenger p ON b.booking_id = p.booking_id
+            JOIN flights f ON b.flight_id = f.flight_id
+            JOIN airport da ON f.departure_airport_id = da.airport_id
+            JOIN airport aa ON f.arrival_airport_id = aa.airport_id
+            ORDER BY b.booking_date DESC;
+        """;
+        return jdbcTemplate.query(sql, new BookingDetailsRowMapper());
     }
     
 }

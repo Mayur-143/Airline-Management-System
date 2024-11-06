@@ -9,6 +9,12 @@ body {
     justify-content: center;
     align-items: center;
     height: 100vh;
+    min-height: 100vh;
+    
+}
+
+main {
+    flex: 1; /* Ensures the main content takes up available space */
 }
 
 /* Navbar Styling */
@@ -209,6 +215,7 @@ footer {
     position: relative;
     bottom: 0;
     width: 100%;
+    margin-bottom: 0px;
 }
 
 footer h3 {
@@ -941,6 +948,11 @@ input[type="submit"]:hover {
 
 .payment-button button:hover {
     background-color: #e67e22;
+}
+
+.not-available {
+    color: red;
+    font-weight: bold;
 }
 
 

@@ -34,7 +34,7 @@ public class PaymentDetailsRepository {
     
         jdbcTemplate.update(connection -> {
             PreparedStatement ps = connection.prepareStatement(sql, new String[] { "payment_id" });
-            ps.setInt(1, paymentDetails.getCardNumber());
+            ps.setString(1, paymentDetails.getCardNumber());
             ps.setString(2, paymentDetails.getCardHolderName());
             ps.setInt(3, paymentDetails.getCvv());
             ps.setDate(4, new java.sql.Date(paymentDetails.getExpiryDate().getTime()));

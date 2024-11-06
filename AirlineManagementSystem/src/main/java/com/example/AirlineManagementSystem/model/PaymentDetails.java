@@ -4,7 +4,7 @@ import java.util.Date;
 
 public class PaymentDetails {
     private int paymentId;
-    private int cardNumber;
+    private String cardNumber;
     private String cardHolderName;
     private int cvv;
     private Date expiryDate;
@@ -14,7 +14,7 @@ public class PaymentDetails {
     // Constructors
     public PaymentDetails() {}
 
-    public PaymentDetails(int paymentId, int cardNumber, String cardHolderName, int cvv, Date expiryDate, int bookingId, int amount) {
+    public PaymentDetails(int paymentId, String cardNumber, String cardHolderName, int cvv, Date expiryDate, int bookingId, int amount) {
         this.paymentId = paymentId;
         this.cardNumber = cardNumber;
         this.cardHolderName = cardHolderName;
@@ -33,11 +33,11 @@ public class PaymentDetails {
         this.paymentId = paymentId;
     }
 
-    public int getCardNumber() {
+    public String getCardNumber() {
         return cardNumber;
     }
 
-    public void setCardNumber(int cardNumber) {
+    public void setCardNumber(String cardNumber) {
         this.cardNumber = cardNumber;
     }
 

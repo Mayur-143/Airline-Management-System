@@ -1,11 +1,13 @@
 package com.example.AirlineManagementSystem.controller;
 
+import com.example.AirlineManagementSystem.dto.BookingDetailsDTO;
 import com.example.AirlineManagementSystem.dto.FlightDTO;
 import com.example.AirlineManagementSystem.model.Airplane;
 import com.example.AirlineManagementSystem.model.Airport;
 import com.example.AirlineManagementSystem.model.Flight;
 import com.example.AirlineManagementSystem.service.AirplaneService;
 import com.example.AirlineManagementSystem.service.AirportService;
+import com.example.AirlineManagementSystem.service.BookingService;
 import com.example.AirlineManagementSystem.service.FlightService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -23,11 +25,13 @@ public class FlightController {
     private final FlightService flightService;
     private final AirportService airportService;
     private final AirplaneService airplaneService;
+    private final BookingService bookingService;
 
-    public FlightController(FlightService flightService, AirportService airportService, AirplaneService airplaneService) {
+    public FlightController(FlightService flightService, AirportService airportService, AirplaneService airplaneService, BookingService bookingService) {
         this.flightService = flightService;
         this.airportService = airportService;
         this.airplaneService = airplaneService;
+        this.bookingService = bookingService;
     }
 
     // Show Add Flight Form
@@ -56,6 +60,13 @@ public class FlightController {
         List<FlightDTO> flights = flightService.getAllFlights();
         model.addAttribute("flights", flights);
         return "viewFlights";
+    }
+
+    @GetMapping("/allbookings")
+    public String viewallBookings(Model model) {        
+        List<BookingDetailsDTO> bookingDetails = bookingService.getBookingsDetails();
+            model.addAttribute("bookingDetails", bookingDetails);
+            return "viewAllBookings";
     }
 }
 
