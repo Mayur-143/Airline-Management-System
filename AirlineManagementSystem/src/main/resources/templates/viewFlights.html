@@ -21,6 +21,7 @@
                 <th>Departure Airport</th>
                 <th>Arrival Airport</th>
                 <th>Airplane</th>
+                <th>Action</th>
             </tr>
         </thead>
         <tbody>
@@ -35,6 +36,9 @@
                 <td th:text="${flight.departureAirportName}"></td>  
                 <td th:text="${flight.arrivalAirportName}"></td>   
                 <td th:text="${flight.airplaneName}"></td>
+                <td>
+                    <a th:href="@{/flights/update/{id}(id=${flight.flightId})}" class="button">Update Flight</a>
+                </td>
             </tr>
         </tbody>
     </table>

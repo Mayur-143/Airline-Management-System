@@ -1,0 +1,70 @@
+<!-- update-flight.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Update Flight</title>
+</head>
+<body>
+
+<h2>Update Flight</h2>
+
+<form action="/flights/update" method="post">
+    <input type="hidden" name="flightId" value="${flight.flightId}">
+
+    <label for="flightNumber">Flight Number:</label>
+    <input type="text" id="flightNumber" name="flightNumber" value="${flight.flightNumber}" required>
+
+    <label for="departureTime">Departure Time:</label>
+    <input type="datetime-local" id="departureTime" name="departureTime" 
+           value="${flight.departureTime}" required>
+
+    <label for="arrivalTime">Arrival Time:</label>
+    <input type="datetime-local" id="arrivalTime" name="arrivalTime" 
+           value="${flight.arrivalTime}" required>
+
+    <label for="flightStatus">Flight Status:</label>
+    <input type="text" id="flightStatus" name="flightStatus" value="${flight.flightStatus}" required>
+
+    <label for="economySeatFare">Economy Seat Fare:</label>
+    <input type="number" id="economySeatFare" name="economySeatFare" value="${flight.economySeatFare}" required>
+
+    <label for="businessSeatFare">Business Seat Fare:</label>
+    <input type="number" id="businessSeatFare" name="businessSeatFare" value="${flight.businessSeatFare}" required>
+
+    <label for="firstClassSeatFare">First Class Seat Fare:</label>
+    <input type="number" id="firstClassSeatFare" name="firstClassSeatFare" value="${flight.firstClassSeatFare}" required>
+
+    <label for="departureAirportId">Departure Airport:</label>
+    <select id="departureAirportId" name="departureAirportId">
+        <c:forEach items="${airports}" var="airport">
+            <option value="${airport.airportId}" ${airport.airportId == flight.departureAirportId ? 'selected' : ''}>
+                ${airport.airportName}
+            </option>
+        </c:forEach>
+    </select>
+
+    <label for="arrivalAirportId">Arrival Airport:</label>
+    <select id="arrivalAirportId" name="arrivalAirportId">
+        <c:forEach items="${airports}" var="airport">
+            <option value="${airport.airportId}" ${airport.airportId == flight.arrivalAirportId ? 'selected' : ''}>
+                ${airport.airportName}
+            </option>
+        </c:forEach>
+    </select>
+
+    <label for="airplaneId">Airplane:</label>
+    <select id="airplaneId" name="airplaneId">
+        <c:forEach items="${airplanes}" var="airplane">
+            <option value="${airplane.airplaneId}" ${airplane.airplaneId == flight.airplaneId ? 'selected' : ''}>
+                ${airplane.description}
+            </option>
+        </c:forEach>
+    </select>
+
+    <button type="submit">Update Flight</button>
+</form>
+
+</body>
+</html>
