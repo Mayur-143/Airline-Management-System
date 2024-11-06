@@ -1,70 +1,50 @@
-<!-- update-flight.html -->
-
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <title>Update Flight</title>
+    <title>Update Flight Status</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
 </head>
 <body>
+    <div th:replace="~{fragments/adminheader :: adminheader}"></div>
 
-<h2>Update Flight</h2>
+    <h1>Update Flight Status</h1>
+    <form th:action="@{/flights/update}" th:object="${flight}" method="post">
+        <input type="hidden" th:field="*{flightId}"/> <!-- Hidden field to pass the flightId -->
+        <!-- Flight Number (Read-only) -->
+        <label>Flight Number:</label>
+        <input type="text" th:field="*{flightNumber}" readonly/><br/>
 
-<form action="/flights/update" method="post">
-    <input type="hidden" name="flightId" value="${flight.flightId}">
+        <!-- Departure and Arrival Airports (Read-only) -->
+        <label>Departure Airport:</label>
+        <input type="text" th:field="*{departureAirportName}" readonly/><br/>
+        <label>Arrival Airport:</label>
+        <input type="text" th:field="*{arrivalAirportName}" readonly/><br/>
 
-    <label for="flightNumber">Flight Number:</label>
-    <input type="text" id="flightNumber" name="flightNumber" value="${flight.flightNumber}" required>
+        <!-- Departure and Arrival Times (Read-only) -->
+        <label>Departure Time:</label>
+        <input type="text" th:field="*{departureTime}" readonly/><br/>
+        <label>Arrival Time:</label>
+        <input type="text" th:field="*{arrivalTime}" readonly/><br/>
 
-    <label for="departureTime">Departure Time:</label>
-    <input type="datetime-local" id="departureTime" name="departureTime" 
-           value="${flight.departureTime}" required>
+        <!-- Flight Fares (Read-only) -->
+        <label>Economy Seat Fare:</label>
+        <input type="text" th:field="*{economySeatFare}" readonly/><br/>
+        <label>Business Seat Fare:</label>
+        <input type="text" th:field="*{businessSeatFare}" readonly/><br/>
+        <label>First Class Seat Fare:</label>
+        <input type="text" th:field="*{firstClassSeatFare}" readonly/><br/>
 
-    <label for="arrivalTime">Arrival Time:</label>
-    <input type="datetime-local" id="arrivalTime" name="arrivalTime" 
-           value="${flight.arrivalTime}" required>
+        
+        <!-- Flight Status (Editable) -->
+        <label>Flight Status:</label>
+        <select th:field="*{flightStatus}">
+            <option value="Scheduled">Scheduled</option>
+            <option value="Completed">Completed</option>
+            <option value="Cancelled">Cancelled</option>
+            <option value="Delayed">Delayed</option>
+        </select><br/>
 
-    <label for="flightStatus">Flight Status:</label>
-    <input type="text" id="flightStatus" name="flightStatus" value="${flight.flightStatus}" required>
-
-    <label for="economySeatFare">Economy Seat Fare:</label>
-    <input type="number" id="economySeatFare" name="economySeatFare" value="${flight.economySeatFare}" required>
-
-    <label for="businessSeatFare">Business Seat Fare:</label>
-    <input type="number" id="businessSeatFare" name="businessSeatFare" value="${flight.businessSeatFare}" required>
-
-    <label for="firstClassSeatFare">First Class Seat Fare:</label>
-    <input type="number" id="firstClassSeatFare" name="firstClassSeatFare" value="${flight.firstClassSeatFare}" required>
-
-    <label for="departureAirportId">Departure Airport:</label>
-    <select id="departureAirportId" name="departureAirportId">
-        <c:forEach items="${airports}" var="airport">
-            <option value="${airport.airportId}" ${airport.airportId == flight.departureAirportId ? 'selected' : ''}>
-                ${airport.airportName}
-            </option>
-        </c:forEach>
-    </select>
-
-    <label for="arrivalAirportId">Arrival Airport:</label>
-    <select id="arrivalAirportId" name="arrivalAirportId">
-        <c:forEach items="${airports}" var="airport">
-            <option value="${airport.airportId}" ${airport.airportId == flight.arrivalAirportId ? 'selected' : ''}>
-                ${airport.airportName}
-            </option>
-        </c:forEach>
-    </select>
-
-    <label for="airplaneId">Airplane:</label>
-    <select id="airplaneId" name="airplaneId">
-        <c:forEach items="${airplanes}" var="airplane">
-            <option value="${airplane.airplaneId}" ${airplane.airplaneId == flight.airplaneId ? 'selected' : ''}>
-                ${airplane.description}
-            </option>
-        </c:forEach>
-    </select>
-
-    <button type="submit">Update Flight</button>
-</form>
-
+        <button type="submit">Update Status</button>
+    </form>
 </body>
 </html>

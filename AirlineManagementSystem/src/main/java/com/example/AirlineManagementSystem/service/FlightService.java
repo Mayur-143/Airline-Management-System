@@ -80,5 +80,12 @@ public class FlightService implements FlightServiceInterface {
         return flightRepository.findFlightById(flightId); // Write the SQL query in the repository
     }
     
-
+    // public FlightDetailsDTO getFlightDetailsById(int flightId) {
+    //     return flightRepository.getFlightDetailsById(flightId);
+    // }
+    
+    public void updateFlightStatus(int flightId, String flightStatus) {
+        flightRepository.updateFlightStatus(flightId, flightStatus);
+    }
+    
 }
