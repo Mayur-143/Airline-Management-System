@@ -11,15 +11,18 @@
 
     <!-- paymentPage.html -->
     <h2>Payment Page</h2>
-    <p>Total Fare: <span th:text="${totalFare}"></span></p>
-    <form th:action="@{/user/booking/payment/process/{bookingId}(bookingId=${bookingId})}" method="post">
+    
+    <form class="payment-form" th:action="@{/user/booking/payment/process/{bookingId}(bookingId=${bookingId})}" method="post">
+        <div class="total-fare">
+            Total Fare: <span th:text="${totalFare}"></span>
+        </div>
         <input type="hidden" name="userId" th:value="${userId}" />
         <input type="hidden" name="totalFare" th:value="${totalFare}" />
         <input type="hidden" name="bookingId" th:value="${bookingId}" />
-
+        
         <label for="cardNumber">Card Number:</label>
         <input type="text" id="cardNumber" name="cardNumber" required />
-        
+
         <label for="cardHolderName">Card Holder Name:</label>
         <input type="text" id="cardHolderName" name="cardHolderName" required />
         

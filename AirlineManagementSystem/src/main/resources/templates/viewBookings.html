@@ -24,6 +24,7 @@
                 <th>Arrival Airport</th>
                 <th>Seat Fare</th>
                 <th>Class</th>
+                <th>Action</th>
             </tr>
         </thead>
         <tbody>
@@ -41,6 +42,9 @@
                 <td th:text="${booking.arrivalAirport}"></td>
                 <td th:text="${booking.seatFare}"></td>
                 <td th:text="${booking.flightClass}"></td>
+                <td>
+                    <a class="button">Cancel Ticket</a>
+                </td>
             </tr>
         </tbody>
     </table>

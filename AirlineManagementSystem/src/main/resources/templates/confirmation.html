@@ -10,10 +10,11 @@
     <div th:replace="~{fragments/header :: header}"></div>
 
     <!-- confirmation.html -->
-    <h2>Booking Confirmed!</h2>
-    <p>Your payment was successful. Booking ID: <span th:text="${bookingId}"></span></p>
-    <p>Thank you for booking with us!</p>
-
+    <div class="confirmation-page">
+        <h2>Booking Confirmed!</h2>
+        <p>Your payment was successful. Booking ID: <span th:text="${bookingId}"></span></p>
+        <p>Thank you for booking with us!</p>
+    </div>
 
     <div th:replace="~{fragments/footer :: footer}"></div>
     
