@@ -63,8 +63,11 @@
             <td th:text="${flight.economySeatFare}"></td>
             <td th:text="${flight.businessSeatFare}"></td>
             <td th:text="${flight.firstClassSeatFare}"></td>
-            <td class="book-now"><a th:href="@{/user/booking/details/{flightId}(flightId=${flight.flightId})}" class="button">Book Now</a></td>
-
+            <td class="book-now">
+                <a th:if="${flight.flightStatus == 'Scheduled'}" 
+                   th:href="@{/user/booking/details/{flightId}(flightId=${flight.flightId})}" 
+                   class="button">Book Now</a>
+            </td>
         </tr>       
     </table>
     

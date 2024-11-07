@@ -142,6 +142,7 @@ public class FlightRepository {
             return ps;
         }, (rs, rowNum) -> {
             FlightDTO flightDTO = new FlightDTO();
+            flightDTO.setFlightId(rs.getInt("flight_id"));
             flightDTO.setFlightNumber(rs.getString("flight_number"));
             flightDTO.setDepartureTime(rs.getTimestamp("departure_time").toLocalDateTime());
             flightDTO.setArrivalTime(rs.getTimestamp("arrival_time").toLocalDateTime());

@@ -56,4 +56,9 @@ public class BookingService {
     public List<BookingDetailsDTO> getBookingsDetails(){
         return bookingRepository.findBookingDetails();
     }
+
+    public List<BookingDetailsDTO> getBookingDetailsById(int bookingId) {
+        return bookingRepository.findBookingDetailsById(bookingId);
+    }    
+    
 }

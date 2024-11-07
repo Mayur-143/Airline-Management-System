@@ -60,3 +60,25 @@
 .modal-content {
     animation: fadeIn 0.3s; /* Fade-in effect */
 }
+
+.success-message {
+    color: green;
+    font-weight: bold;
+    margin: 10px 0;
+    padding: 10px;
+    background-color: #e8f5e9;
+    border: 1px solid #a5d6a7;
+    border-radius: 5px;
+    width: 50%;
+    text-align: center;
+}
+
+.error-message {
+    color: red;
+    font-weight: bold;
+    margin: 10px 0;
+    padding: 10px;
+    background-color: #ffebee;
+    border: 1px solid #ef9a9a;
+    border-radius: 5px;
+}

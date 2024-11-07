@@ -12,6 +12,7 @@ import com.example.AirlineManagementSystem.dto.FlightDetailsDTO;
 import com.example.AirlineManagementSystem.model.Airplane;
 import com.example.AirlineManagementSystem.model.Flight;
 import com.example.AirlineManagementSystem.model.FlightSeats;
+import com.example.AirlineManagementSystem.repository.BookingRepository;
 import com.example.AirlineManagementSystem.repository.FlightRepository;
 import com.example.AirlineManagementSystem.repository.FlightSeatsRepository;
 
@@ -21,13 +22,15 @@ public class FlightService implements FlightServiceInterface {
     private final FlightRepository flightRepository;
     private final FlightSeatsRepository flightSeatsRepository;
     private final AirplaneService airplaneService;
+    private final BookingRepository bookingRepository;
 
 
     @Autowired
-    public FlightService(FlightRepository flightRepository, FlightSeatsRepository flightSeatsRepository, AirplaneService airplaneService) {
+    public FlightService(FlightRepository flightRepository, FlightSeatsRepository flightSeatsRepository, AirplaneService airplaneService, BookingRepository bookingRepository) {
         this.flightRepository = flightRepository;
         this.flightSeatsRepository = flightSeatsRepository;
         this.airplaneService = airplaneService;
+        this.bookingRepository = bookingRepository;
     }
 
     public int addFlight(Flight flight) {
@@ -86,6 +89,16 @@ public class FlightService implements FlightServiceInterface {
     
     public void updateFlightStatus(int flightId, String flightStatus) {
         flightRepository.updateFlightStatus(flightId, flightStatus);
+    }
+
+    public void cancelFlightAndBookings(int flightId) {
+        // Update flight status to "Cancelled"
+        flightRepository.updateFlightStatus(flightId, "Cancelled");
+
+        // Cancel all bookings associated with this flight
+        bookingRepository.cancelAllBookingsByFlightId(flightId);
+
+        
     }
     
 }
