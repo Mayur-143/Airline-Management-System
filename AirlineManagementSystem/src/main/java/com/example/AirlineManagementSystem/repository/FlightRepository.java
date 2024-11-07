@@ -161,6 +161,9 @@ public class FlightRepository {
         return jdbcTemplate.queryForObject(query, new FlightRowMapper(), flightId);
     }
     
-    
+    public void updateFlightStatus(int flightId, String flightStatus) {
+        String sql = "UPDATE flights SET flight_status = ? WHERE flight_id = ?";
+        jdbcTemplate.update(sql, flightStatus, flightId);
+    }
     
 }

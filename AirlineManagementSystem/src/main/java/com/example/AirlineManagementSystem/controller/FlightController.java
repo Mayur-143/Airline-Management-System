@@ -2,6 +2,7 @@ package com.example.AirlineManagementSystem.controller;
 
 import com.example.AirlineManagementSystem.dto.BookingDetailsDTO;
 import com.example.AirlineManagementSystem.dto.FlightDTO;
+import com.example.AirlineManagementSystem.dto.FlightDetailsDTO;
 import com.example.AirlineManagementSystem.model.Airplane;
 import com.example.AirlineManagementSystem.model.Airport;
 import com.example.AirlineManagementSystem.model.Flight;
@@ -13,10 +14,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.List;
+import java.util.Optional;
 
 @Controller
 @RequestMapping("/flights")
@@ -68,5 +71,22 @@ public class FlightController {
             model.addAttribute("bookingDetails", bookingDetails);
             return "viewAllBookings";
     }
+
+    // Show Update Flight Status Form
+    @GetMapping("/update/{id}")
+    public String showUpdateFlightForm(@PathVariable("id") int flightId, Model model) {
+        Optional<FlightDetailsDTO> flightDetails = flightService.getFlightDetailsById(flightId);
+        model.addAttribute("flight", flightDetails);
+        return "update-flight";
+    }
+
+    // Handle Update Flight Status Form Submission
+    @PostMapping("/update")
+    public String updateFlightStatus(@ModelAttribute("flight") FlightDetailsDTO flightDetailsDTO) {
+        flightService.updateFlightStatus(flightDetailsDTO.getFlightId(), flightDetailsDTO.getFlightStatus());
+        return "redirect:/flights/view";
+    }
+
+
 }
 
