@@ -34,9 +34,9 @@
             <div class="fare-details">
                 <h3>Fare Details</h3>
                 <div class="details-grid">
-                    <p><strong>Economy Fare:</strong> $<span th:text="${flightDetails.economySeatFare}"></span></p>
-                    <p><strong>Business Fare:</strong> $<span th:text="${flightDetails.businessSeatFare}"></span></p>
-                    <p><strong>First Class Fare:</strong> $<span th:text="${flightDetails.firstClassSeatFare}"></span></p>
+                    <p><strong>Economy Fare:</strong> ₹<span th:text="${flightDetails.economySeatFare}"></span></p>
+                    <p><strong>Business Fare:</strong> ₹<span th:text="${flightDetails.businessSeatFare}"></span></p>
+                    <p><strong>First Class Fare:</strong> ₹<span th:text="${flightDetails.firstClassSeatFare}"></span></p>
                 </div>
             </div>
 
@@ -44,9 +44,15 @@
                 <h3>Airplane Details</h3>
                 <div class="details-grid">
                     <p><strong>Airplane Model:</strong> <span th:text="${flightDetails.airplaneModel}"></span></p>
-                    <p><strong>Total Seats:</strong> <span th:text="${flightDetails.totalSeats}"></span></p>
+                    <p><strong>Airplane Name:</strong> <span th:text="${flightDetails.airplaneName}"></span></p>
+                </div>
+            </div>
+            <div class="airplane-details">
+                <h3>Seat Availability</h3>
+                <div class="details-grid"> 
+                    <!-- <p><strong>Total Seats:</strong> <span th:text="${flightDetails.totalSeats}"></span></p> -->
                     <p><strong>Total Economy Seats:</strong> <span th:text="${flightDetails.totalEconomySeats}"></span></p>
-                    
+                    <p><strong>Total Business Seats:</strong> <span th:text="${flightDetails.totalBusinessSeats}"></span></p>
                     <p><strong>Total First Class Seats:</strong> <span th:text="${flightDetails.totalFirstClassSeats}"></span></p>
                     <p><strong>Available Economy Seats:</strong> 
                         <span th:classappend="${flightDetails.availableEconomySeats <= 0} ? 'not-available'" 

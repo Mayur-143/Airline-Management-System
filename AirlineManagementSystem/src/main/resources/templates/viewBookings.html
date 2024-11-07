@@ -3,11 +3,44 @@
 <head>
     <title>My Bookings</title>
     <link rel="stylesheet" th:href="@{/css/style.css}">
+    <link rel="stylesheet" th:href="@{/css/modal.css}">
+    <script>
+        let bookingIdToCancel = null;
+    
+        function showCancelModal(bookingId) {
+            bookingIdToCancel = bookingId;
+            document.getElementById("cancelModal").style.display = "block";
+        }
+    
+        function closeModal() {
+            document.getElementById("cancelModal").style.display = "none";
+            bookingIdToCancel = null;
+        }
+    
+        function confirmCancellation() {
+            if (bookingIdToCancel) {
+                window.location.href = '/user/booking/cancel-ticket/' + bookingIdToCancel;
+            }
+        }
+    
+        // Close the modal if the user clicks outside of it
+        window.onclick = function(event) {
+            const modal = document.getElementById("cancelModal");
+            if (event.target == modal) {
+                closeModal();
+            }
+        };
+    </script>
+    
 </head>
 <body>
     <div th:replace="~{fragments/header :: header}"></div>
 
     <h2>My Bookings</h2>
+
+    <div th:if="${message}" class="success-message" th:text="${message}"></div>
+    <div th:if="${error}" class="error-message" th:text="${error}"></div>
+
     <table>
         <thead>
             <tr>
@@ -24,6 +57,7 @@
                 <th>Arrival Airport</th>
                 <th>Seat Fare</th>
                 <th>Class</th>
+                <th>Ticket</th>
                 <th>Action</th>
             </tr>
         </thead>
@@ -43,12 +77,29 @@
                 <td th:text="${booking.seatFare}"></td>
                 <td th:text="${booking.flightClass}"></td>
                 <td>
-                    <a class="button">Cancel Ticket</a>
+                    <a th:if="${booking.status == 'Confirmed'}" th:href="@{/user/booking/download-ticket/{bookingId}(bookingId=${booking.bookingId})}" class="button">Download Ticket</a>
+                </td>
+                <td>
+                    <a th:if="${booking.status == 'Confirmed'}" href="javascript:void(0);" th:onclick="'showCancelModal(' + ${booking.bookingId} + ');'" class="button">Cancel Ticket</a>
                 </td>
             </tr>
         </tbody>
     </table>
 
+    <!-- Cancel Confirmation Modal -->
+    <div id="cancelModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <h2 class="modal-title">Cancel Booking</h2>
+            <p class="modal-message">Are you sure you want to cancel this ticket?</p>
+            <div class="modal-actions">
+                <button class="button" onclick="confirmCancellation()">Yes, Cancel</button>
+                <button class="button" onclick="closeModal()">No, Keep Booking</button>
+            </div>
+        </div>
+    </div>
+
     <div th:replace="~{fragments/footer :: footer}"></div>
 </body>
+
 </html>

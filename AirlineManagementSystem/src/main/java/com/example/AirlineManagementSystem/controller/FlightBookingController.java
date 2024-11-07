@@ -69,14 +69,14 @@ public class FlightBookingController {
     ) {
         // Fetch flights based on search criteria
         List<FlightDTO> flights = flightService.searchFlights(departureAirportId, arrivalAirportId, startDate);
-
+        
         if (flights.isEmpty()) {
             model.addAttribute("message", "No flights available for the selected criteria.");
         }
 
         List<Airport> airports = airportService.getAllAirports();
         List<Airplane> airplanes = airplaneService.getAllAirplanes();
-
+        model.addAttribute("flight", flight);
         model.addAttribute("airports", airports);
         model.addAttribute("airplanes", airplanes);
         model.addAttribute("flights", flights);
