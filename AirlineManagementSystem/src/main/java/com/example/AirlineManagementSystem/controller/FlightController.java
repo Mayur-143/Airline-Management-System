@@ -54,7 +54,7 @@ public class FlightController {
     @PostMapping("/add")
     public String addFlight(@ModelAttribute("flight") Flight flight) {
         flightService.addFlight(flight);
-        return "redirect:/flights/view";
+        return "redirect:/admin/flights/view";
     }
 
     // View All Flights

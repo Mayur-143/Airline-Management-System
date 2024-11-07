@@ -45,7 +45,7 @@ public class EmployeeController {
     @PostMapping("/add")
     public String addEmployee(@ModelAttribute("employee") Employee employee) {
         employeeService.addEmployee(employee);
-        return "redirect:/employees/view";  // Redirect to view all employees after saving
+        return "redirect:/admin/employees/view";  // Redirect to view all employees after saving
     }
 
     // Display all employees

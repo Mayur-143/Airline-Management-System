@@ -38,7 +38,7 @@ public class AirplaneController {
         int totalSeats = airplane.getTotalEconomySeats() + airplane.getTotalBusinessSeats() + airplane.getTotalFirstClassSeats();
         airplane.setTotalSeats(totalSeats);
         airplaneService.addAirplane(airplane);
-        return "redirect:/airplanes/view";  // Redirect to view page after saving
+        return "redirect:/admin/airplanes/view";  // Redirect to view page after saving
     }
 
     // Display the list of all airplanes

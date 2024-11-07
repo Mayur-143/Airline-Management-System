@@ -34,7 +34,7 @@ public class AirportController {
     @PostMapping("/add")
     public String addAirport(@ModelAttribute("airport") Airport airport) {
         airportService.addAirport(airport);
-        return "redirect:/airports/view";  // Redirect to view page after saving
+        return "redirect:/admin/airports/view";  // Redirect to view page after saving
     }
 
     // Display the list of all airports
