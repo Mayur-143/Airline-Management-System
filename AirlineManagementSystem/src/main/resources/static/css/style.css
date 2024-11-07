@@ -5,12 +5,10 @@ body {
     padding: 0;
     background-color: #f0f4f8; /* Light background for elegance */
     color: #333;
-    /* display: flex; */
     justify-content: center;
     align-items: center;
     height: 100vh;
-    min-height: 100vh;
-    
+    min-height: 100vh;  
 }
 
 main {
@@ -113,6 +111,124 @@ main {
     margin-top: 10px;
     animation: fadeInUp 1s ease-in-out;
 }
+
+/* about section */
+.about{
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+}
+
+.about .img{
+    flex: 1 1 40rem;
+}
+
+.about .img img{
+    width: 100%;
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.7);
+    border:0.1rem solid rgba(0,0,0,0.7);
+}
+
+.about .content{
+    flex: 1 1 40rem;
+}
+
+.about .content span{
+    color: #fff;
+    font-size: 2.5rem;
+}
+
+.about .content h3{
+    color:#222;
+    font-size: 3rem;
+    padding-top:.5rem;
+}
+
+.about .content p{
+    color:#222;
+    font-size: 1.4rem;
+    line-height: 2;
+    padding:1rem 0;
+}
+
+
+/* home slider cointainer */
+/* .home{
+    padding-top: 14rem;
+    background: url(images/slider1.jpg) no-repeat;
+    background-size: cover;
+    background-position: center;
+    position: relative;
+}
+.home .slides-container .slide{
+    display:flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    display:none;
+}
+.home .slides-container .slide.active{
+    display:flex;
+}
+
+.home .slides-container .slide .content{
+    flex: 1 1 40rem;
+    animation: fadeLeft .4s linear .4s backwards;
+}
+
+.home .slides-container .slide .content span{
+    color: #000;
+    font-size:1.5rem;
+}
+
+.home .slides-container .slide .content h3{
+    font-size:4rem;
+    color: #222;
+    padding:.5rem 0;
+}
+
+.home .slides-container .slide .img{
+    flex: 1 1 40rem;
+    margin: 3rem 0;
+}
+
+.home .slides-container .slide .img img{
+    width: 100%;
+    animation: fadeUp .4s linear;
+}
+
+.home #next-slide,
+.home #prev-slide{
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    height: 5rem;
+    width: 5rem;
+    line-height: 5rem;
+    box-shadow: 0 0.5rem 1rem rgba(0,0,0,0.7);
+    border:0.1rem solid rgba(0,0,0,0.7);
+    text-align: center;
+    background: var(--brown);
+    font-size:2rem;
+    color: #fff;
+    cursor: pointer;
+}
+
+.home #next-slide:hover,
+.home #prev-slide:hover{
+    background:#222;
+    color: #fff;
+    box-shadow: 0 0.5rem 1rem rgba(0,0,0,0.1);
+}
+
+.home #prev-slide{
+    left:2rem;
+}
+
+.home #next-slide{
+    right:2rem;
+} */
 
 .book-btn {
     margin-top: 30px;

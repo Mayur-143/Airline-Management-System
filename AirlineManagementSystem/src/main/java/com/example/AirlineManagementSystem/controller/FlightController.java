@@ -83,7 +83,13 @@ public class FlightController {
     // Handle Update Flight Status Form Submission
     @PostMapping("/update")
     public String updateFlightStatus(@ModelAttribute("flight") FlightDetailsDTO flightDetailsDTO) {
-        flightService.updateFlightStatus(flightDetailsDTO.getFlightId(), flightDetailsDTO.getFlightStatus());
+        if ("Cancelled".equalsIgnoreCase(flightDetailsDTO.getFlightStatus())) {
+            // Call a service method to handle flight cancellation and update seat availability
+            flightService.cancelFlightAndBookings(flightDetailsDTO.getFlightId());
+        } else {
+            // Otherwise, just update the flight status
+            flightService.updateFlightStatus(flightDetailsDTO.getFlightId(), flightDetailsDTO.getFlightStatus());
+        }
         return "redirect:/flights/view";
     }
 

@@ -170,6 +170,11 @@ public class BookingRepository {
         """;
         return jdbcTemplate.query(sql, new BookingDetailsRowMapper());
     }
+
+    public void cancelAllBookingsByFlightId(int flightId) {
+        String sql = "UPDATE bookings SET status = 'Cancelled' WHERE flight_id = ?";
+        jdbcTemplate.update(sql, flightId);
+    }
     
 }
 
