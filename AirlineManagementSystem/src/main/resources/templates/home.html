@@ -6,6 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mahakal Airline</title>
     <link rel="stylesheet" th:href="@{/css/style.css}">
+
+    
+    
     
 </head>
 
@@ -14,11 +17,42 @@
     <div th:replace="~{fragments/header :: header}"></div>
     
         <!-- Hero Section -->
+       <!-- <div class="hero">
+            <h1>Welcome to Mahakal Airline</h1>
+            <p>Book your flight tickets effortlessly and securely.</p>
+            <a th:href="@{/user/booking}" class="book-btn">Book Flight</a>
+        </div> -->
+
+        <!-- Hero Section with Image Slider -->
+        <!--<div class="hero">
+            <div class="slider-images">
+                <img src="/images/slider1.jpg" alt="Slide 1" class="slide active">
+                <img src="/images/2.jpg" alt="Slide 2" class="slide">
+                <img src="/images/aeroplane-bg1jpg.jpg" alt="Slide 3" class="slide">
+            </div>
+            <div class="hero-content">
+                <h1>Welcome to Mahakal Airline</h1>
+                <p>Book your flight tickets effortlessly and securely.</p>
+                <a th:href="@{/user/booking}" class="book-btn">Book Flight</a>
+            </div>
+            <button class="prev" onclick="changeSlide(-1)">&#10094;</button>
+            <button class="next" onclick="changeSlide(1)">&#10095;</button>
+        </div> -->
+
         <div class="hero">
+            <div class="slider">
+                <div class="slide" style="background-image: url('/images/slider1.jpg');"></div>
+                <div class="slide" style="background-image: url('/images/2.jpg');"></div>
+                <div class="slide" style="background-image: url('/images/aeroplane-bg1jpg.jpg');"></div>
+            </div>
             <h1>Welcome to Mahakal Airline</h1>
             <p>Book your flight tickets effortlessly and securely.</p>
             <a th:href="@{/user/booking}" class="book-btn">Book Flight</a>
         </div>
+        
+
+
+        
 
         <!-- Content Section -->
         <div class="content">
@@ -60,6 +94,32 @@
                     answer.style.display = "block";
                 }
             }
+
+                const slides = document.querySelectorAll('.slide');
+                let currentSlide = 0;
+            
+                function showSlide() {
+                    // Remove the active class from all slides
+                    slides.forEach((slide) => slide.classList.remove('active'));
+            
+                    // Add the active class to the current slide
+                    slides[currentSlide].classList.add('active');
+            
+                    // Increment the slide index, looping back to the first slide after the last
+                    currentSlide = (currentSlide + 1) % slides.length;
+                }
+            
+                // Start the slider, changing slide every 3 seconds
+                setInterval(showSlide, 3000);
+            
+                // Initially display the first slide
+                showSlide();
+
+            
+            
+
+
+
         </script>
     
 </body>

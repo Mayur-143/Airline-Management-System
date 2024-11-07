@@ -1,10 +1,11 @@
 package com.example.AirlineManagementSystem.rowmapper;
 
-import com.example.AirlineManagementSystem.dto.FlightDetailsDTO;
-import org.springframework.jdbc.core.RowMapper;
-
 import java.sql.ResultSet;
 import java.sql.SQLException;
+
+import org.springframework.jdbc.core.RowMapper;
+
+import com.example.AirlineManagementSystem.dto.FlightDetailsDTO;
 
 public class FlightDetailsDTORowMapper implements RowMapper<FlightDetailsDTO> {
 

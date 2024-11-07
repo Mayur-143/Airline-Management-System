@@ -1,7 +1,7 @@
 package com.example.AirlineManagementSystem.controller;
 
-import com.example.AirlineManagementSystem.model.Airplane;
-import com.example.AirlineManagementSystem.service.AirplaneService;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -10,7 +10,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import java.util.List;
+import com.example.AirlineManagementSystem.model.Airplane;
+import com.example.AirlineManagementSystem.service.AirplaneService;
 
 @Controller
 @RequestMapping("/airplanes")
@@ -33,6 +34,9 @@ public class AirplaneController {
     // Process the form to add a new airplane
     @PostMapping("/add")
     public String addAirplane(@ModelAttribute("airplane") Airplane airplane) {
+
+        int totalSeats = airplane.getTotalEconomySeats() + airplane.getTotalBusinessSeats() + airplane.getTotalFirstClassSeats();
+        airplane.setTotalSeats(totalSeats);
         airplaneService.addAirplane(airplane);
         return "redirect:/airplanes/view";  // Redirect to view page after saving
     }
