@@ -22,7 +22,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Controller
-@RequestMapping("/flights")
+@RequestMapping("/admin/flights")
 public class FlightController {
 
     private final FlightService flightService;

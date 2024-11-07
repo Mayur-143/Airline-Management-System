@@ -8,7 +8,7 @@
     <div th:replace="~{fragments/adminheader :: adminheader}"></div>
 
     <h1>Update Flight Status</h1>
-    <form th:action="@{/flights/update}" th:object="${flight}" method="post">
+    <form th:action="@{/admin/flights/update}" th:object="${flight}" method="post">
         <input type="hidden" th:field="*{flightId}"/> <!-- Hidden field to pass the flightId -->
         <!-- Flight Number (Read-only) -->
         <label>Flight Number:</label>

@@ -17,7 +17,7 @@ import com.example.AirlineManagementSystem.repository.ContactRepository;
 import com.example.AirlineManagementSystem.service.UserService;
 
 @Controller
-@RequestMapping("/contacts")
+@RequestMapping("/user/contacts")
 public class ContactController {
 
     private final ContactRepository contactRepository;

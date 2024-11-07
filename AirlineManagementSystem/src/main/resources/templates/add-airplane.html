@@ -19,7 +19,7 @@
     <div th:replace="~{fragments/adminheader :: adminheader}"></div>
 
     <h1>Add New Airplane</h1>
-    <form th:action="@{/airplanes/add}" th:object="${airplane}" method="post">
+    <form th:action="@{/admin/airplanes/add}" th:object="${airplane}" method="post">
         <label>Registration No:</label>
         <input type="text" th:field="*{registrationNo}" required /><br/>
 

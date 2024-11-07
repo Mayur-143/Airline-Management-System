@@ -8,7 +8,7 @@
     <div th:replace="~{fragments/adminheader :: adminheader}"></div>
 
     <h1>Add New Flight</h1>
-    <form th:action="@{/flights/add}" th:object="${flight}" method="post">
+    <form th:action="@{/admin/flights/add}" th:object="${flight}" method="post">
         <label>Flight Number:</label>
         <input type="text" th:field="*{flightNumber}" required /><br/>
 

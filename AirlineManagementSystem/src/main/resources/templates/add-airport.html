@@ -9,7 +9,7 @@
     <div th:replace="~{fragments/adminheader :: adminheader}"></div>
     
     <h1>Add New Airport</h1>
-    <form th:action="@{/airports/add}" th:object="${airport}" method="post">
+    <form th:action="@{/admin/airports/add}" th:object="${airport}" method="post">
         <label>Airport Name:</label>
         <input type="text" th:field="*{airportName}" required /><br/>
         <label>IATA Code:</label>

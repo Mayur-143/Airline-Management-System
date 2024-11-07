@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import java.util.List;
 
 @Controller
-@RequestMapping("/airports")
+@RequestMapping("/admin/airports")
 public class AirportController {
 
     private final AirportService airportService;

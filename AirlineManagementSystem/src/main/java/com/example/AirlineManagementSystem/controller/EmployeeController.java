@@ -16,7 +16,7 @@ import com.example.AirlineManagementSystem.service.AirportService;
 import com.example.AirlineManagementSystem.service.EmployeeService;
 
 @Controller
-@RequestMapping("/employees")
+@RequestMapping("/admin/employees")
 public class EmployeeController {
 
     private final EmployeeService employeeService;

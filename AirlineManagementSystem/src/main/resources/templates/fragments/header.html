@@ -1,9 +1,15 @@
 <!-- Header Section -->
 <div th:fragment="header">
     <div class="navbar">
+        <!-- Logo section -->
+        <!-- <div class="logo">
+            <a href="/user/home">
+                <img src="/images/logo.png" alt="Logo" style="width: 80px; height: auto;">
+            </a>
+        </div> -->
         <div class="left-links">
             <a href="/user/home">About Us</a>
-            <a href="/contacts/add">Contact Us</a>
+            <a href="/user/contacts/add">Contact Us</a>
             <a th:href="@{/user/booking}">View Flights</a>
         </div>
         <div class="right-links">
