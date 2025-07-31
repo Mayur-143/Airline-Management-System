@@ -9,10 +9,10 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.example</groupId>
-	<artifactId>AirlineManagementSystem</artifactId>
+	<artifactId>Airline-Management-System</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>AirlineManagementSystem</name>
-	<description>Demo project for Spring Boot</description>
+	<description>Airline Management System DBMS Project</description>
 	<url/>
 	<licenses>
 		<license/>

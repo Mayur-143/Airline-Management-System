@@ -56,7 +56,9 @@ public class SecurityConfig {
                         .logoutUrl("/logout")
                         .logoutSuccessUrl("/login?logout=true")
                         .permitAll()
-                );
+                )
+                .cors(cors -> {})  // ← Added this for enabling port forwarding through devtunnels
+                .headers(headers -> headers.frameOptions().sameOrigin()); // ← Allow iframe usage if needed (like H2 console)
 
         return http.build();
     }
@@ -94,5 +96,19 @@ public class SecurityConfig {
    public SpringSecurityDialect springSecurityDialect() {
        return new SpringSecurityDialect();
    }
+
+   @Bean
+    public org.springframework.web.servlet.config.annotation.WebMvcConfigurer corsConfigurer() {
+        return new org.springframework.web.servlet.config.annotation.WebMvcConfigurer() {
+            @Override
+            public void addCorsMappings(org.springframework.web.servlet.config.annotation.CorsRegistry registry) {
+                registry.addMapping("/**")
+                        .allowedOrigins("https://d20258px-8080.inc1.devtunnels.ms")
+                        .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS")
+                        .allowCredentials(true);
+            }
+        };
+    }
+
 
 }
